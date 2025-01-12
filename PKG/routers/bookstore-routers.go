@@ -1,9 +1,8 @@
 package routers
 
 import (
-	"fmt"
 	"github.com/gorilla/mux"
-	"github.com/LH10/Book-Management-System-in-Golang-/PKG/controllers"
+	"github.com/LH-10/Book-Management-System-in-Golang-/PKG/controllers"
 )
 
 func RegisterBookStoreRoutes(router *mux.Router){

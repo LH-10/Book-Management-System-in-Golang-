@@ -1,14 +1,15 @@
 package models
 
 import(
+	"fmt"
 	"github.com/jinzhu/gorm"
-	"github.com/LH10/Book-Management-System-in-Golang-/PKG/config"
+	"github.com/LH-10/Book-Management-System-in-Golang-/PKG/config"
 )
 
 var db *gorm.DB
 
 type Book struct{
-	grom.model
+	gorm.Model
 	Name string `gorm:""json:"name"`
 	Author string `json:"author"`
 	Publication string `json:"publication"`
@@ -16,7 +17,11 @@ type Book struct{
 }
 
 func init(){
-	config.DbConnect()
+	err:=config.DbConnect()
+	if err!=nil{
+		fmt.Println("error occured")
+		return
+	}
 	db=config.GetDb()
 	db.AutoMigrate(&Book{})
 }
