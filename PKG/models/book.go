@@ -39,8 +39,8 @@ func GetAllBooks() ([]Book){
 }
 
 func GetBookById(Id int64)(*Book,*gorm.DB){
-	var mybook *Book
-	db.Where("ID=?",Id).Find(&mybook)
+	var mybook *Book=&Book{}
+	db.Where("ID=?",Id).Find(mybook)
 	return mybook,db
 }
 

@@ -65,8 +65,8 @@ import(
 		if err!=nil{
 			fmt.Println("Error occured while conversion",Id)
 		}
-		// res,_:=json.Marshal(models.UpdateBook(Id,*Book1))
-		// w.Header().Set("Content-Type","application/json")
-		// w.WriteHeader(http.StatusOK)
-		// w.Write(res)
+		res,_:=json.Marshal(models.UpdateBook(Id,*Book1))
+		w.Header().Set("Content-Type","application/json")
+		w.WriteHeader(http.StatusOK)
+		w.Write(res)
 	}
