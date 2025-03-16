@@ -27,7 +27,7 @@
     position: relative;
     width: 240px;
     margin: 15px 40px;
-    height: 380px;
+    height: 400px;
     
     border-radius: 14px;
     transition: all 0.3s ease-in-out;
@@ -68,10 +68,40 @@
     transition: all 0.3s ease-out;
 }
 
+.bookcard .card-options{
+    position: absolute;
+    display: flex;
+    top: 0;
+    gap: 5px;
+    right: 0;
+    margin: 2px 8px;
+    visibility: hidden;
+    background: transparent;
+    transition: .3s ease-in-out;
+}
+
+.bookcard:hover .card-options{
+    visibility: visible;
+}
+
+.card-options div{
+    background: rgb(210, 239, 239);
+    display: flex;
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    z-index: 2;
+    padding: 6px;
+}
+
+.card-options div:hover{
+    transform: scale(1.1);
+}
 .bookcard:hover {
     transform: translateY(-5px);
     box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
-    background: linear-gradient(to bottom, #37ca55, #0d9839);
+    /* background: linear-gradient(to bottom, #37ca55, #0d9839); */
+    background: linear-gradient(to bottom, #f3d285, #deb40c);
 }
 
 .bookcard:hover .bookinfo{
