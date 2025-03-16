@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.booksContainer {
+    display: grid ;
+    grid-template-columns: repeat(3, auto);
+    background: linear-gradient(135deg, #dfe7f3 0%, #c4d5ef 100%);
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap:wrap;
+    gap: 30px;
+    column-gap: 70px;
+    padding: 20px;
+    overflow: auto;
+}
+
+.booksContainer .bookcard {
+    transition: all 0.3s ease-in-out;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 240px;
+    margin: 15px 40px;
+    height: 380px;
+    
+    border-radius: 14px;
+    transition: all 0.3s ease-in-out;
+    padding: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.bookcard .titlesection {
+    width: 92%;
+    align-self: center;
+    height: 65%;
+    margin-top: 12px;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333333;
+    font-family: 'Arial', sans-serif;
+    background: #f8f9fa;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+
+}
+
+.bookcard .bookinfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+    background-color: transparent;
+    height: 35%;
+    color: #444444;
+    padding: 8px 12px;
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease-out;
+}
+
+.bookcard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+    background: linear-gradient(to bottom, #37ca55, #0d9839);
+}
+
+.bookcard:hover .bookinfo{
+    color: white;
+}
+
+.bookinfo ul {
+    list-style: none;
+    text-decoration: none;
+    padding: 0;
+}
+
+@media screen and (max-width:1125px) {
+    .booksContainer{
+        grid-template-columns: repeat(2,auto);
+        gap: 10px;
+    }
+}
+@media screen and (max-width:676px) {
+    .booksContainer{
+        grid-template-columns: repeat(1,auto);
+    }
+}
