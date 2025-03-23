@@ -4,6 +4,7 @@ import {Route,Routes} from "react-router-dom"
 import viteLogo from '/vite.svg'
 import './App.css'
 import BooksDisplay from './Components/BooksDisplay'
+import Dashboard from './Components/Dashboard'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,7 +12,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<BooksDisplay/>}/>
+        <Route path="/" element={<Dashboard/>}/>
       </Routes>
     </>
   )

@@ -5,10 +5,14 @@
 }
 
 .booksContainer {
+    /* margin: 35px 12px; */
+    position: relative;
     display: grid ;
     grid-template-columns: repeat(3, auto);
-    background: linear-gradient(135deg, #dfe7f3 0%, #c4d5ef 100%);
-    width: 100vw;
+    /* background: linear-gradient(135deg, #dfe7f3 0%, #c4d5ef 100%); */
+    /* background: linear-gradient(135deg, #f3ebdf 0%, #efe8c4 100%); */
+       /* background: #ebedef; */
+    background-color: #E8ECEF;
     height: 100vh;
     justify-content: center;
     align-items: flex-start;
@@ -38,7 +42,7 @@
 .bookcard .titlesection {
     width: 92%;
     align-self: center;
-    height: 65%;
+    height: 70%;
     margin-top: 12px;
     padding: 10px 15px;
     display: flex;
@@ -50,7 +54,26 @@
     border-radius: 12px;
     font-size: 1.1rem;
     font-weight: 500;
+    
+}
 
+.bookcard .extra-context-for-transparent-card{
+    transition: all .4s ease-in-out;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    visibility: hidden;
+    text-align: center;
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin: 2px 30px;
+}
+.bookcard:hover .extra-context-for-transparent-card{
+    color: rgb(0, 47, 255);
+    font-weight: 900;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    visibility: visible;
+    
+    
+    font-size: 1.5rem;
 }
 
 .bookcard .bookinfo {
@@ -60,7 +83,7 @@
     align-items: center;
     margin-top: 8px;
     background-color: transparent;
-    height: 35%;
+    height: 25%;
     color: #444444;
     padding: 8px 12px;
     font-family: 'Arial', sans-serif;
@@ -74,7 +97,7 @@
     top: 0;
     gap: 5px;
     right: 0;
-    margin: 2px 8px;
+    margin: 4px 8px;
     visibility: hidden;
     background: transparent;
     transition: .3s ease-in-out;
@@ -85,10 +108,10 @@
 }
 
 .card-options div{
-    background: rgb(210, 239, 239);
+    background: rgb(218, 241, 241);
     display: flex;
-    height: 35px;
-    width: 35px;
+    height: 38px;
+    width: 38px;
     border-radius: 50px;
     z-index: 2;
     padding: 6px;
@@ -101,7 +124,12 @@
     transform: translateY(-5px);
     box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
     /* background: linear-gradient(to bottom, #37ca55, #0d9839); */
-    background: linear-gradient(to bottom, #f3d285, #deb40c);
+    background: linear-gradient(to bottom, #fb9664, #f76806);
+    /* background:#123499; */
+    /* background: linear-gradient(to bottom, #4268db, #0c2f9a); */
+    /* background: #0e3fd1; */
+    /* background: #1A43bf; */
+    /* background: #0A2472; */
 }
 
 .bookcard:hover .bookinfo{
