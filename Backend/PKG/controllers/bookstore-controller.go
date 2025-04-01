@@ -8,11 +8,41 @@ import(
 	"github.com/LH-10/Book-Management-System-in-Golang-/PKG/utils"
 	"github.com/LH-10/Book-Management-System-in-Golang-/PKG/models"
 	"encoding/json"
+	"log"
+	"os"
+	_"io"
+	_"github.com/joho/godotenv"
+
 )
 	 var data models.Book
 	func CreateBook(w http.ResponseWriter, r *http.Request){
 		 Book1 :=&models.Book{}
-		utils.ParseBody(r,Book1)
+		// utils.ParseBody(r,Book1)
+		err := r.ParseMultipartForm(10 << 20)
+		if err != nil {
+			fmt.Println(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode("Error parsing form")
+			return
+		}
+		Jdata:=r.Form.Get("documentj")
+		s, _ := strconv.Unquote(Jdata)
+
+				fmt.Println(Jdata)
+		fmt.Println(s)
+		if err:=json.Unmarshal([]byte(Jdata),Book1);err!=nil{
+			log.Printf("error occured")
+			fmt.Println(err)
+			return
+		}
+		var imageFolderPath string =os.Getenv("Book_Images_Path")
+		 imagefilepath,err:=utils.FileUpload(r,imageFolderPath)
+		 if err!=nil{
+			log.Println(err)
+			fmt.Fprintf(w,"error")
+			return
+		}
+		Book1.ImagePath=imagefilepath
 		res,_:=json.Marshal(Book1.CreateBook())
 		w.Header().Set("Content-Type","application/json")
 		w.WriteHeader(http.StatusOK)
@@ -70,3 +100,26 @@ import(
 		w.WriteHeader(http.StatusOK)
 		w.Write(res)
 	}
+
+	func ImageUpload(w http.ResponseWriter,r *http.Request){
+
+		err := r.ParseMultipartForm(10 << 20)
+    if err != nil {
+        fmt.Println(err)
+        w.WriteHeader(http.StatusInternalServerError)
+        json.NewEncoder(w).Encode("Error parsing form")
+        return
+    }
+		var imageFolderPath string =os.Getenv("Book_Images_Path")
+		if _,err:=utils.FileUpload(r,imageFolderPath);err!=nil{
+			log.Println(err)
+			fmt.Fprintf(w,"error")
+			return
+		}
+		// if err:=utils.FileUpload(r,"bookimages");err!=nil{
+		// 	log.Println(err)
+		// 	fmt.Fprintf(w,"error")
+		// 	return
+		// }
+		fmt.Fprintf(w,"hello")
+		}
