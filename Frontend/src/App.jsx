@@ -5,6 +5,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import BooksDisplay from './Components/BooksDisplay'
 import Dashboard from './Components/Dashboard'
+import NewBook from './Components/NewBook'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,6 +14,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Dashboard/>}/>
+        <Route path="/addbook" element={<NewBook/>}/>
       </Routes>
     </>
   )

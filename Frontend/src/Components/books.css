@@ -6,7 +6,7 @@
 
 .booksContainer {
     /* margin: 35px 12px; */
-    position: relative;
+    position:relative;
     display: grid ;
     grid-template-columns: repeat(3, auto);
     /* background: linear-gradient(135deg, #dfe7f3 0%, #c4d5ef 100%); */
@@ -15,12 +15,13 @@
     background-color: #E8ECEF;
     height: 100vh;
     justify-content: center;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     flex-wrap:wrap;
     gap: 30px;
     column-gap: 70px;
-    padding: 20px;
-    overflow: auto;
+    padding: 10px;
+    
+    overflow-y:auto;
 }
 
 .booksContainer .bookcard {
@@ -31,7 +32,7 @@
     position: relative;
     width: 240px;
     margin: 15px 40px;
-    height: 400px;
+    height: 390px;
     
     border-radius: 14px;
     transition: all 0.3s ease-in-out;
@@ -58,25 +59,26 @@
 }
 
 .bookcard .extra-context-for-transparent-card{
-    transition: all .4s ease-in-out;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     visibility: hidden;
     text-align: center;
     font-weight: 900;
     font-size: 1.5rem;
     margin: 2px 30px;
+    transition: all .4s ease-in-out;
 }
 .bookcard:hover .extra-context-for-transparent-card{
-    color: rgb(0, 47, 255);
+    color: rgb(5, 5, 46);
     font-weight: 900;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     visibility: visible;
-    
-    
-    font-size: 1.5rem;
+    text-justify:distribute-all-lines;
+    margin-top: 8px ;
 }
 
+
 .bookcard .bookinfo {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -96,6 +98,7 @@
     display: flex;
     top: 0;
     gap: 5px;
+    cursor: pointer;
     right: 0;
     margin: 4px 8px;
     visibility: hidden;
@@ -147,9 +150,25 @@
         grid-template-columns: repeat(2,auto);
         gap: 10px;
     }
+    .booksContainer .bookcard .extra-context-for-transparent-card{
+        font-size: 1.3rem;
+        visibility: visible;
+    }
+    .bookcard .card-options{
+        visibility: visible;
+    }
 }
 @media screen and (max-width:676px) {
     .booksContainer{
         grid-template-columns: repeat(1,auto);
+        font-size:1rem ;
+    }
+    .booksContainer .bookcard{
+        height: 320px;
+        width: 200px;
+        font-size: large;
+    }
+    .bookcard .extra-context-for-transparent-card{
+        font-size: 1.1rem;
     }
 }

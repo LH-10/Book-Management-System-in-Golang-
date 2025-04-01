@@ -7,7 +7,9 @@ export default function Dashboard(){
         <>
         <div className="dashboard">
             <Navbar/>
+          
             <BooksDisplay/>
+            
         </div>
         </>
     )

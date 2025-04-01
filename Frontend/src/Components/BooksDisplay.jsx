@@ -4,9 +4,9 @@ import "./books.css"
 import binIcon from "../assets/bin-icon.png"
 import editIcon from "../assets/edit-icon.png"
 import addIcon from "../assets/add-icon (3).png"
+import { Link, useNavigate } from "react-router-dom"
 
 const BooksDisplay = () => {
-
 
     
     const BookCard=({book})=>{
@@ -38,12 +38,13 @@ const BooksDisplay = () => {
             </>
         )
     }
-
-    const [allbooks, setAllBooks] = useState([
     
+    const [allbooks, setAllBooks] = useState([
+        
         
     ])
-
+    const navigate=useNavigate()
+    
     useEffect(() => {
         async function getallbooks() {
             try {
@@ -71,9 +72,8 @@ const BooksDisplay = () => {
         outlineColor:"black ",
         // borderStyle:"dotted",
         // borderColor:"black",
-        color:"blue",
-        
-        
+        color:"black",
+        transition:"all .4s ease-out",
         cursor:"pointer",
         alignItems:"center",
         justifyContent:"center",
@@ -83,6 +83,7 @@ const BooksDisplay = () => {
         width:"80px",
         height:"70px",
         margin:"20px 0",
+        marginTop:"60px",
         padding:"2px 4px"
     }
 
@@ -90,11 +91,10 @@ const BooksDisplay = () => {
         <>
 
             <div className="booksContainer">
-
-                <div className="bookcard" style={emptyCardStyle}>
+                <div className="bookcard" style={emptyCardStyle}  onClick={()=>{navigate("/addbook")}}>
                     <img src={addIcon} alt="addicon"  srcset="" style={addIconStyle} />
                     <div className="extra-context-for-transparent-card" >
-                         Add New Book
+                    Click to Add  Book
                     </div>
                 </div>
 
