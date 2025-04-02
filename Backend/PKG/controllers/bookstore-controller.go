@@ -10,6 +10,7 @@ import(
 	"encoding/json"
 	"log"
 	"os"
+	"strings"
 	_"io"
 	_"github.com/joho/godotenv"
 
@@ -42,6 +43,8 @@ import(
 			fmt.Fprintf(w,"error")
 			return
 		}
+		
+		imagefilepath=strings.Replace(imagefilepath,os.Getenv("Book_Images_Path"),os.Getenv("Book_Image_URL_For_Client"),1)
 		Book1.ImagePath=imagefilepath
 		res,_:=json.Marshal(Book1.CreateBook())
 		w.Header().Set("Content-Type","application/json")

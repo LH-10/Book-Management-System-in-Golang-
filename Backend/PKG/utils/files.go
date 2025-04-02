@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"time"
 	"strings"
 	
 )
@@ -15,6 +16,7 @@ import (
 func FileUpload(r *http.Request,fileFolderName string)( string,error){
 	filepth:=""
 	name:=r.Form.Get("filename")
+	name=fmt.Sprintf("%v%v",time.Now().Unix(),name)
 	if name=="" {
 		return filepth, errors.New("Error Occured")
 	}
@@ -42,7 +44,8 @@ func FileUpload(r *http.Request,fileFolderName string)( string,error){
 	if err!=nil{
 		return filepth, errors.New("Error while copying file")
 	}
-	filepth=completePath
+	filepth=strings.ReplaceAll(completePath,"\\","/") 
+	//Since filepath.Join converts forwards slashes to backward conveting them back '\\' in a string shows up as \
 
 	return filepth, nil
 
