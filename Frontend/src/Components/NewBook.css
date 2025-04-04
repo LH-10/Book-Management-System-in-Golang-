@@ -1,0 +1,90 @@
+.book-form-container {
+    background-color: rgba(233, 230, 230, 0.751);
+    width: 440px;
+    height: 610px;
+    margin: 8px 14px;
+    margin-top: 20px;
+    display: flex;
+    border-radius: 2px;
+    box-shadow: 1px 4px 7px rgba(123, 122, 122, 0.487), 0px 3px 8px rgba(145, 145, 145, 0.431);
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.book-form-container .image-upload {
+    background-color: rgb(253, 251, 251);
+    padding: 30px 50px;
+    width: 100%;
+    
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 160px;
+}
+/* .book-form-container .image-upload label  {
+    
+} */
+
+.book-details-input {
+    display: flex;
+    /* background-color: rgb(249, 131, 85); */
+    background: linear-gradient(210deg, rgb(240, 177, 95), rgb(240, 216, 121));
+    justify-content: center;
+    /* align-items: center;  */
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+    padding: 2px 40px;
+    height: 100%;
+    
+}
+
+.book-details-input input {
+    border-radius: 6px;
+    width: 100%;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* outline-offset: 3px; */
+    outline-width: 3px;
+    border-color: rgb(214, 149, 29);
+    padding: 4px 10px;
+    margin-bottom: 20px;
+    -webkit-text-fill-color: rgba(122, 121, 119, 0.87);
+    border: none;
+    outline-color: rgb(248, 103, 13);
+}
+
+.book-details-input input:focus {
+    outline-style: solid;
+    transform: translateY(-1.9px);
+
+}
+
+.book-details-input label {
+    color: rgb(174, 67, 10);
+    font-weight: 600;
+    
+}
+.book-details-input button{
+    background-color: rgb(225, 69, 12);
+    border-radius: 6px;
+    padding: 6px 2px;
+    font-size: 1rem;
+    height: 35px;
+    font-weight: 500;
+    border: none;
+    color: white;
+}
+.book-details-input button:hover{
+    background-color: rgb(202, 70, 22);
+
+}
+
+.book-details-input button:focus{
+    outline: none;
+}
+.book-details-input button:active{
+    outline: none;
+}

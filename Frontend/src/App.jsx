@@ -12,10 +12,13 @@ function App() {
 
   return (
     <>
+        <div className="" style={{width:"100vw",height:"100vh",display:"flex",justifyContent:"center"}}>
       <Routes>
         <Route path="/" element={<Dashboard/>}/>
+
         <Route path="/addbook" element={<NewBook/>}/>
       </Routes>
+        </div>
     </>
   )
 }
