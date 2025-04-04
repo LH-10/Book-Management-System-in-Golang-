@@ -2,16 +2,37 @@ import { useRef, useState } from "react";
 // import { navigate, Route } from "react-router-dom"
 import "./NewBook.css"
 import ImageUpload from "./ImageUpload";
+import { BASE_URL } from "../configs/Urls"
 import axios from "axios"
+
 export default function NewBook() {
 
     const [bookTitle, bookAuthor, bookPublication, bookPrice] = [useRef(), useRef(), useRef(), useRef()]
     const imageFile=useRef()
 
-    const handlSubmit=(e)=>{
+    const handlSubmit= async (e)=>{
         e.preventDefault()
 
-       
+        const formData=new FormData()
+        const Jobj={
+            name:bookTitle.current.value,
+            Author:bookAuthor.current.value,
+            Publication:bookPublication.current.value
+        }
+        formData.append("documentj",JSON.stringify(Jobj))
+        console.log(Jobj)
+        formData.append("filename",Jobj.name)
+        formData.append("file",imageFile.current.files[0])
+        try{
+
+            const response=await axios.post(`${BASE_URL}/book/`,formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            })
+            console.log(response)
+        }
+        catch(err){
+            console.log(err)
+        }
 
     }
     

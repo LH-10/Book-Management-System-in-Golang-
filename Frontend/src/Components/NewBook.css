@@ -88,3 +88,34 @@
 .book-details-input button:active{
     outline: none;
 }
+
+@media screen and (max-width: 480px) {
+    .book-form-container {
+        width: 90%;
+        margin: 10px auto;
+    }
+    
+    .book-details-input {
+        padding: 1rem;
+    }
+    
+    .book-details-input input {
+        height: 36px;
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .book-form-container {
+        width: 95%;
+    }
+    
+    .book-details-input {
+        padding: 0.75rem;
+    }
+    
+    .image-upload {
+        padding: 15px;
+        min-height: 140px;
+    }
+}
