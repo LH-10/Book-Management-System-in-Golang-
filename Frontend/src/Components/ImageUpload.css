@@ -1,51 +1,65 @@
-.fileupload-container{
+.fileupload-container {
 
-    border-radius: 10px;
-    position: relative;
-    padding: 5px 10px;
-     min-width: 280px;
-     min-height: 120px;
-     border-style: dashed;
-     border-color: rgba(137, 135, 135, 0.802);
-     align-self: center;
+  border-radius: 10px;
+  position: relative;
+  padding: 5px 10px;
+  min-width: 280px;
+  min-height: 120px;
+  /* border-style: dashed; */
+  align-self: center;
 
 }
 
-.fileupload-container.dragging {
-    border-color: #3498db;
-    background-color: rgba(52, 152, 219, 0.05);
-  }
-  
-  .upload-icon {
-    margin-bottom: 10px;
-  }
-  
-  .upload-text {
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-  
-  .upload-hint {
-    font-size: 12px;
-    color: #666;
-  }
-  
-  .fileupload-container .remove-img{
-      width: 18px;
-      height: 18px;
-      position: absolute;
-      top: 0;
-      opacity: 0;
-      right: 0;
-      z-index: 10;
-      margin: 3px 4px;
-      background: url("../assets/crossicon.png") center/contain no-repeat;
-      transition: all .5s;
-    }
-    .fileupload-container:hover .remove-img{
-        opacity: 100%;
-        
-    }
-    .fileupload-container .remove-img:hover{
-        transform: scale(1.14);
-    }
+.fileupload-container-copy {
+
+  border-color: rgba(137, 135, 135, 0.802);
+
+  border-radius: 10px;
+  position: relative;
+  min-width: 280px;
+  min-height: 120px;
+  border-style: dashed;
+}
+
+.fileupload-container-copy.dragging {
+  border-color: #3498db;
+  background-color: rgba(52, 152, 219, 0.05);
+}
+
+.upload-icon {
+  margin-bottom: 10px;
+}
+
+.upload-text {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.upload-hint {
+  font-size: 12px;
+  color: #666;
+}
+
+.fileupload-container-copy .remove-img {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  right: 0;
+  z-index: 10;
+  cursor: pointer;
+  margin: 3px 4px;
+  background: url("../assets/crossicon.png") center/contain no-repeat;
+  transition: all .8s;
+}
+
+.fileupload-container-copy:hover .remove-img {
+  opacity: 100%;
+
+}
+
+.fileupload-container-copy .remove-img:hover {
+  transform: scale(1.14);
+}
+

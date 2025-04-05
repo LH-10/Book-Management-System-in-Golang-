@@ -5,11 +5,22 @@ import binIcon from "../assets/bin-icon.png"
 import editIcon from "../assets/edit-icon.png"
 import addIcon from "../assets/add-icon (3).png"
 import { Link, useNavigate } from "react-router-dom"
+import { BASE_URL } from "../configs/Urls"
 
 const BooksDisplay = () => {
 
     
     const BookCard=({book})=>{
+        const handleDeleteBook=async()=>{
+            try {
+                const response= await axios.delete(`${BASE_URL}/book/${book.id}`)
+                console.log(response)
+                window.location.reload();
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
         return(
             <>
             <div className="bookcard">
@@ -18,11 +29,12 @@ const BooksDisplay = () => {
                         <img src={editIcon} alt="edit"/>
                     </div>
                     <div >
-                        <img src={binIcon} alt="delete"/>
+                        <img src={binIcon} alt="delete" onClick={handleDeleteBook}/>
                     </div>
                     
                 </div>
                 <div className="titlesection">
+                    <img src={`${BASE_URL}/${book.image}`} alt="" srcset="" />
                    <h3>
                     {book.title}
                     </h3> 
@@ -91,7 +103,7 @@ const BooksDisplay = () => {
         <>
 
             <div className="booksContainer">
-                <div className="bookcard" style={emptyCardStyle}  onClick={()=>{navigate("/addbook")}}>
+                <div className="bookcard" style={emptyCardStyle}  onClick={()=>{navigate("../addbook")}}>
                     <img src={addIcon} alt="addicon"  srcset="" style={addIconStyle} />
                     <div className="extra-context-for-transparent-card" >
                     Click to Add  Book
@@ -100,7 +112,7 @@ const BooksDisplay = () => {
 
                 {true?
                 allbooks.map((book)=>(
-                    <BookCard key={book.ID} book={{title:book.name, author:book.author, publication:book.publication}}/>
+                    <BookCard key={book.ID} book={{id:book.ID,title:book.name, author:book.author, publication:book.publication , image:book.ImagePath}}/>
                 ))
                 :<></>}
 

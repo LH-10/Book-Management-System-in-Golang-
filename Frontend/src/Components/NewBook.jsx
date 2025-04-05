@@ -4,12 +4,14 @@ import "./NewBook.css"
 import ImageUpload from "./ImageUpload";
 import { BASE_URL } from "../configs/Urls"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
+import { Slide, toast, ToastContainer } from "react-toastify";
 
 export default function NewBook() {
 
     const [bookTitle, bookAuthor, bookPublication, bookPrice] = [useRef(), useRef(), useRef(), useRef()]
     const imageFile=useRef()
-
+    const navigate=useNavigate()
     const handlSubmit= async (e)=>{
         e.preventDefault()
 
@@ -29,9 +31,29 @@ export default function NewBook() {
                 headers: { 'Content-Type': 'multipart/form-data' },
             })
             console.log(response)
+            if(response.data.name){
+                toast.success('New Book Added',{
+                    theme:"colored",
+                    position:"top-center",
+                    onClose:(()=>{
+                        navigate('./dashboard')
+                    })
+                })
+            }
+            else{
+                toast.error('Failed',{
+                    position:"top-center",
+                    theme:"colored"
+                })
+            }
         }
         catch(err){
+            toast.error('Failed',{
+                position:"top-center",
+                theme:"colored"
+            })
             console.log(err)
+            throw new Error(""+err)
         }
 
     }
@@ -39,7 +61,17 @@ export default function NewBook() {
 
     return (
         <>
-            <form className="book-form-container" onSubmit={handlSubmit}>
+        <div className="outer-book-form-cont">
+
+            <form className="book-form-container" onSubmit={(e)=>{ e.preventDefault()
+              toast.promise(
+                  handlSubmit(e),
+                  {
+                      pending: 'Submitting the form...',
+                                          
+                    }
+                )  
+            }}>
 
                 <div className="image-upload" >
                     <ImageUpload textToDisplay={"Upload Book Image"} fileRef={imageFile} />
@@ -49,7 +81,7 @@ export default function NewBook() {
                     <input type="text" ref={bookTitle} placeholder="Enter book title" id="title" required pattern="^[a-zA-Z0-9\s]+$" />
 
                     <label htmlFor="">Author</label>
-                    <input type="text" ref={bookAuthor} placeholder="Enter author's name" id="author" required pattern="^[a-zA-Z\s]+$" />
+                    <input type="text" ref={bookAuthor} placeholder="Enter author's name" id="author" required pattern="^[a-zA-Z\s.]+$" />
 
                     <label htmlFor="">Publication</label>
                     <input type="text" ref={bookPublication} placeholder="Enter publication name" id="publication" required pattern="^[a-zA-Z0-9\s]+$" />
@@ -60,6 +92,8 @@ export default function NewBook() {
                     <button type="submit" >Submit</button>
                 </div>
             </form>
+                    </div>
+            <ToastContainer theme="light" position="bottom-left" autoClose={2000} transition={Slide}/>
         </>
     )
 }

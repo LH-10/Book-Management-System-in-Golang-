@@ -1,10 +1,20 @@
+.outer-book-form-cont{
+    background: transparent;
+    width: inherit;
+    height: 100vh;
+    padding: 10px 0;
+}
+
 .book-form-container {
     background-color: rgba(233, 230, 230, 0.751);
     width: 440px;
     height: 610px;
     margin: 8px 14px;
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
+    align-self: center;
+    justify-self: center;
+    
     border-radius: 2px;
     box-shadow: 1px 4px 7px rgba(123, 122, 122, 0.487), 0px 3px 8px rgba(145, 145, 145, 0.431);
     flex-direction: column;
@@ -76,10 +86,11 @@
     font-weight: 500;
     border: none;
     color: white;
+    cursor: pointer;
 }
 .book-details-input button:hover{
     background-color: rgb(202, 70, 22);
-
+    
 }
 
 .book-details-input button:focus{
@@ -98,6 +109,8 @@
     .book-details-input {
         padding: 1rem;
     }
+    .book-details-input button {
+    margin-top: 12px;}
     
     .book-details-input input {
         height: 36px;

@@ -45,18 +45,33 @@
     align-self: center;
     height: 70%;
     margin-top: 12px;
-    padding: 10px 15px;
+    padding: 8px 12px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
     color: #333333;
     font-family: 'Arial', sans-serif;
     background: #f8f9fa;
     border-radius: 12px;
     font-size: 1.1rem;
     font-weight: 500;
-    
+    gap: 2px;    
 }
+.bookcard .titlesection h3{
+    margin: 2px 4px;
+    background: rgb(255, 233, 193);
+    margin-bottom:0 ;
+    text-align: justify;
+    text-align: center;
+}
+.bookcard .titlesection img{
+    height: 160px;
+    aspect-ratio: 1 / 6 /1;
+}
+
+
 
 .bookcard .extra-context-for-transparent-card{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
