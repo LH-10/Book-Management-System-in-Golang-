@@ -5,6 +5,7 @@
   padding: 5px 10px;
   min-width: 280px;
   min-height: 120px;
+  height: 80%;
   /* border-style: dashed; */
   align-self: center;
 
@@ -17,7 +18,9 @@
   border-radius: 10px;
   position: relative;
   min-width: 280px;
+  display: flex;
   min-height: 120px;
+  justify-content: center;
   border-style: dashed;
 }
 
@@ -39,6 +42,7 @@
   font-size: 12px;
   color: #666;
 }
+
 
 .fileupload-container-copy .remove-img {
   width: 18px;
@@ -63,3 +67,15 @@
   transform: scale(1.14);
 }
 
+@media (max-width: 700px){
+  .fileupload-container-copy{
+    min-width: 220px;
+  }
+}
+@media (max-width: 400px){
+  .fileupload-container-copy{
+    min-width: none;
+    max-width: 290px;
+  }
+
+}

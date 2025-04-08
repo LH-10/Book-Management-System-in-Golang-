@@ -5,12 +5,11 @@ import DeleteIcon from "../assets/crossicon.png"
 import {Slide, ToastContainer,toast} from 'react-toastify'
 
 
-export default function ImageUpload({ fileRef, textToDisplay, onFileSelect }) {
+export default function ImageUpload({ fileRef, textToDisplay, onFileSelect ,externalStyles={}}) {
   const [selectedImage, setSelectedImage] = useState(null)
   const [isDragging, setIsDragging] = useState(false)
   const fileRefInternal = useRef(null)
   const assignedFileRef = fileRef || fileRefInternal
-
   const handleFileChange = (e) => {
     const file = e.target.files?.[0]
     if (file) {
@@ -86,7 +85,7 @@ export default function ImageUpload({ fileRef, textToDisplay, onFileSelect }) {
 
   return (
     <>
-      <div className={`fileupload-container-copy ${isDragging ? "dragging" :""}`}>
+      <div className={`fileupload-container-copy ${isDragging ? "dragging" :""}`} style={externalStyles}>
 
         { selectedImage &&(    <div className="remove-img" onClick={handleFileRemove}></div>)}
         <label
@@ -112,7 +111,7 @@ export default function ImageUpload({ fileRef, textToDisplay, onFileSelect }) {
                 <img src={fileUploadIcon} alt="Upload icon" width={35} height={35} />
               </div>
               <div className="upload-text">{textToDisplay}</div>
-              <div className="upload-hint">Drag & drop or click to browse</div>
+              <div className="upload-hint" >Drag & drop or click to browse</div>
             </>
           )
           }

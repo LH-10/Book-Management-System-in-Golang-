@@ -1,0 +1,414 @@
+.editbook-form-container {
+    width: 90%;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    /* background-color: aqua; */
+    margin: 0 auto;
+    /* min-width: 856px; */
+    max-width: 1280px;
+    border-color: #fff3e0;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    overflow: hidden;
+}
+.editbook-form-container form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow-y: scroll;
+
+}
+.editbook-form-container form::-webkit-scrollbar {
+    display: none;
+}
+.edit-form-header-container {
+    width: 100%;
+    display: flex;
+    border-top-right-radius: inherit;
+    border-top-left-radius: inherit;
+    min-height: 120px;
+    padding: 6px 30px;
+    background:linear-gradient(to right,#f97316,#f59e0b);
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.edit-form-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; 
+    gap: 20px;
+    padding: 30px 40px;
+    /* background: rgb(185, 183, 183); */
+    flex-grow: 1; 
+    overflow-y: scroll;
+    
+}
+.edit-form-details-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.edit-form-details-grid .image-section {
+    border: .5px solid;    
+    border-color: #ffce79;
+    background:linear-gradient(to right,#f8e1d0,#fffbeb);
+    border-radius: 22px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* max-width: 400px; */
+    padding: 20px 15px;
+    height: 100%;
+}
+
+.edit-form-details-grid .editdetails-input-sections {
+    background: rgb(255, 255, 255);
+    border-radius: 22px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 30px;
+
+}
+
+.editdetails-input-sections .details-input-subs{
+    border-radius: inherit;
+    border: .5px solid;    
+    border-color: #ffce79;
+    height: 100%;
+    background: rgb(255,247,237,.500);
+    padding-bottom: 20px;
+    /* overflow-y: scroll; */
+}
+
+.details-input-subs .section-title{
+    padding: 22px 22px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgb(194,65,12);
+}
+.details-input-subs .section-title h3{
+    font-size: 1.32rem;
+}
+
+.details-input-subs .input-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0 22px;
+}
+
+.details-input-subs .input-grid.full-width {
+    grid-template-columns: 1fr;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-container.full-width {
+    grid-column: span 2;
+}
+
+.input-container label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #c2410c;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.input-container input, 
+.input-container textarea,
+.input-container select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #ffce79;
+    background-color: white;
+    font-size: 1rem;
+    width: 100%;
+    outline: none;
+}
+
+.input-container input:focus, 
+.input-container textarea:focus,
+.input-container select:focus {
+    border-color: #f97316;
+    box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+}
+
+.input-container textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.book-cover-container {
+    background-color: rgba(255, 250, 250, 0.624);
+    padding: 16px;
+    border-radius: 0.75rem;
+    border: 1px solid #ffce79;
+    margin-top: 24px;
+}
+
+.book-cover-container h3 {
+    color: oklch(47% 0.157 37.304);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 5px;
+    margin-bottom: 12px;
+}
+
+.book-image-container {
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    aspect-ratio: 3/4;
+    position: relative;
+    border: 1px solid #ffce79;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    max-height: 180px;
+    justify-content: center;
+}
+
+.book-image-container img{
+    height: inherit;
+    aspect-ratio: 3/4;
+    padding: 20px;
+    max-height: 180px;
+}
+
+
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.header-content h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.header-content p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header-btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+}
+
+.cancel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.save-btn {
+    background-color: white;
+    color: #f97316;
+    border: none;
+}
+
+.save-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+@media (max-width: 943px) {
+
+.edit-form-details-grid{
+ gap: 20px;
+ grid-template-columns: 3fr;
+}
+
+.editbook-form-container form {
+    overflow-y: scroll;
+}
+
+.edit-form-details-grid .image-section{
+ grid-column: span 2;
+ width: 100%;
+}
+
+
+
+}
+
+@media (max-width: 768px) {
+    .edit-form-details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .details-input-subs .input-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .input-container.full-width {
+        grid-column: span 1;
+    }
+    
+    .header-buttons {
+        display: none;
+    }
+    
+    .edit-form-header-continer {
+        justify-content: center;
+        text-align: center;
+    }
+    .mobile-buttons{
+        visibility: visible;
+    }
+}@media (max-width: 768px) {
+    .edit-form-details-grid {
+      grid-template-columns: 1fr;
+      padding: 20px;
+      gap: 15px;
+    }
+    
+    .details-input-subs .input-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .input-container.full-width {
+        grid-column: span 1;
+    }
+    
+    /* Hide header buttons on tablet/mobile */
+    .header-buttons {
+        display: none;
+    }
+    
+    .edit-form-header-continer {
+        justify-content: center;
+        text-align: center;
+        min-height: 100px;
+        padding: 15px;
+    }
+    
+    .header-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .header-content p {
+        font-size: 0.9rem;
+    }
+  
+    .input-container label {
+        font-size: 0.85rem;
+    }
+    
+    .input-container input,
+    .input-container textarea,
+    .input-container select {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .details-input-subs .section-title h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* Show bottom buttons on tablet/mobile */
+    .mobile-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    
+}
+
+  /* Add a new media query for very small screens */
+  @media (max-width: 542px) {
+      .editbook-form-container {
+          width: 95%;
+          height: auto;
+        }
+        
+        
+        
+        .edit-form-details-grid {
+            padding: 15px;
+            gap: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .edit-form-header-continer {
+            min-height: 80px;
+            padding: 10px;
+        }
+        
+        .header-content h1 {
+            font-size: 1.3rem;
+        }
+        
+        .book-image-container {
+            max-height: 150px;
+        }
+        
+        .details-input-subs {
+            padding-bottom: 10px;
+        }
+        
+        .details-input-subs .section-title {
+            padding: 15px;
+        }
+        
+        .details-input-subs .input-grid {
+            padding: 0 15px;
+            gap: 15px;
+        }
+        .mobile-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+          }
+    }
+    
+@media (max-width: 753px) {
+    
+.edit-form-details-grid {
+    padding: 15px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    }
+    }
+   @media (min-width: 768px) {
+       .mobile-buttons {
+           display: none;
+    }
+  }
+  
+  
