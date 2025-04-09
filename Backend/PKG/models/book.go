@@ -13,7 +13,7 @@ type Book struct{
 	Name string `gorm:""json:"name"`
 	Author string `json:"author"`
 	Publication string `json:"publication"`
-	ImagePath string 
+	ImagePath string  `json:"imagepath"`
 }
 
 func init(){

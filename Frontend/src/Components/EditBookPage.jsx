@@ -7,6 +7,9 @@ import { toast } from "react-toastify";
 import saveIcon from "../assets/saveicon (2).png"
 import bookInfoIcon from "../assets/open-book.png"
 import moreInfoIcon from "../assets/document.png"
+import bookCoverIcon from "../assets/bookcover.png"
+import axios from "axios";
+import { BASE_URL } from "../configs/Urls";
 // import publicationinfo from "../assets/publication.png"
 
 export default function EditBookPage() {
@@ -14,21 +17,26 @@ export default function EditBookPage() {
         title: "The Great Gatsby",
         author: "F. Scott Fitzgerald",
         publication: "Scribner",
-        publicationDate: "1925-04-10",
-        price: 12.99,
+        price: 800,
+        imagepath:"",
         description: "A novel of mystery and tragedy set in the Roaring Twenties, The Great Gatsby follows the story of the wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan.",
         isbn: "9780743273565",
-        pages: 180,
         genre: "Classic Fiction",
-        status: "active"
     });
-    const bkid = useParams('id')
+    const [changesMade,setChangesMade]=useState(0)
+    const {bkid} = useParams()
 
     useEffect(() => {
         async function fetchAllBookDetails() {
+            try{
+                const response=await axios.get(`${BASE_URL}/book/${bkid}`)
+                console.log(response)
+            }catch(err){
+                console.log(err);
+            }
         }
         fetchAllBookDetails()
-    }, [])
+    }, [changesMade])
 
     const fileInputRef = useRef();
 
@@ -136,7 +144,8 @@ export default function EditBookPage() {
                         <div className="image-section">
 
                             <div className="book-cover-container">
-                                <h3>
+                                <h3 >
+                                    <img src={bookCoverIcon} alt="" style={{width:"32px",height:"24px"}} />
                                     Existing Book Cover
                                 </h3>
                                 <div className="book-image-container">
@@ -268,6 +277,7 @@ export default function EditBookPage() {
                                                 border: "none",
                                                 borderRadius: "10px",
                                                 fontWeight: "500",
+                                                cursor:"pointer",
                                             }}
                                         >
                                             

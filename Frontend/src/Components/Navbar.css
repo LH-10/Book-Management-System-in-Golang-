@@ -10,7 +10,7 @@
 
 .navcontainer{
     width: inherit;
-    height: 58px;
+    height: 60px;
     border-radius: 20px;
     display: flex   ;
     justify-content: flex-end;

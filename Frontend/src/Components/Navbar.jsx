@@ -17,7 +17,7 @@ export default function Navbar() {
                     </ul>
 
                     <div className="usernavblock">
-                        <img src="" alt="usericon" srcset="" />
+                        <img  alt="usericon"  />
                         <h3>Username</h3>
                     </div>
                    

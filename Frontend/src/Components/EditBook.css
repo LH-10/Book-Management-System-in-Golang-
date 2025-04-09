@@ -1,16 +1,18 @@
 .editbook-form-container {
     width: 90%;
-    height: 800px;
+    height: 790px;
     display: flex;
     flex-direction: column;
     border-radius: 25px;
     /* background-color: aqua; */
-    margin: 0 auto;
+    margin: 3px auto;
+    margin-bottom: 10px;
     /* min-width: 856px; */
     max-width: 1280px;
     border-color: #fff3e0;
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     overflow: hidden;
+    
 }
 .editbook-form-container form {
     width: 100%;
@@ -293,7 +295,8 @@ img.iconimg{
     .mobile-buttons{
         visibility: visible;
     }
-}@media (max-width: 768px) {
+}
+@media (max-width: 768px) {
     .edit-form-details-grid {
       grid-template-columns: 1fr;
       padding: 20px;
@@ -308,7 +311,6 @@ img.iconimg{
         grid-column: span 1;
     }
     
-    /* Hide header buttons on tablet/mobile */
     .header-buttons {
         display: none;
     }
@@ -343,7 +345,6 @@ img.iconimg{
         font-size: 1.2rem;
     }
     
-    /* Show bottom buttons on tablet/mobile */
     .mobile-buttons {
         display: flex;
         justify-content: flex-end;
@@ -367,6 +368,7 @@ img.iconimg{
       .editbook-form-container {
           width: 95%;
           height: auto;
+          border-radius: 2px;
         }
         
         

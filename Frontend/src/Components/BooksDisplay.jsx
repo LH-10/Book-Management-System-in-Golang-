@@ -21,12 +21,20 @@ const BooksDisplay = () => {
                 console.log(error)
             }
         }
+        const handleEditClick = ()=>{
+            try{
+                navigate(`../editbook/${book.id}`)
+            }
+            catch(err){
+                console.log(err+" error occured during navigate")
+            }
+        }
         return(
             <>
             <div className="bookcard">
                 <div className="card-options">
                     <div >
-                        <img src={editIcon} alt="edit"/>
+                        <img src={editIcon} alt="edit" onClick={handleEditClick}/>
                     </div>
                     <div >
                         <img src={binIcon} alt="delete" onClick={handleDeleteBook}/>
@@ -34,7 +42,7 @@ const BooksDisplay = () => {
                     
                 </div>
                 <div className="titlesection">
-                    <img src={`${BASE_URL}/${book.image}`} alt="" srcset="" />
+                    <img src={`${BASE_URL}/${book.image}`} alt=""  />
                    <h3>
                     {book.title}
                     </h3> 
@@ -60,7 +68,7 @@ const BooksDisplay = () => {
     useEffect(() => {
         async function getallbooks() {
             try {
-                const resp = await axios.get("http://localhost:8000/book/")
+                const resp = await axios.get(`${BASE_URL}/book/`)
                 if (resp.data) {
                     setAllBooks(resp.data)
                     console.log(resp.data)
@@ -104,7 +112,7 @@ const BooksDisplay = () => {
 
             <div className="booksContainer">
                 <div className="bookcard" style={emptyCardStyle}  onClick={()=>{navigate("../addbook")}}>
-                    <img src={addIcon} alt="addicon"  srcset="" style={addIconStyle} />
+                    <img src={addIcon} alt="addicon"   style={addIconStyle} />
                     <div className="extra-context-for-transparent-card" >
                     Click to Add  Book
                     </div>
@@ -112,7 +120,7 @@ const BooksDisplay = () => {
 
                 {true?
                 allbooks.map((book)=>(
-                    <BookCard key={book.ID} book={{id:book.ID,title:book.name, author:book.author, publication:book.publication , image:book.ImagePath}}/>
+                    <BookCard key={book.ID} book={{id:book.ID,title:book.name, author:book.author, publication:book.publication , image:book.imagepath}}/>
                 ))
                 :<></>}
 
