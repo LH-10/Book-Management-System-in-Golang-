@@ -188,3 +188,11 @@
         font-size: 1.1rem;
     }
 }
+@media (max-width: 680px){
+    .bookcard .titlesection img{
+        height: 140px;
+    }
+    .bookcard .titlesection h3{
+        font-size: .85rem;
+    }
+}
