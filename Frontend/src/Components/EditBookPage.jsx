@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import "./EditBook.css";
-import {useParams} from "react-router-dom"
+import { useParams } from "react-router-dom"
 import ImageUpload from "./ImageUpload";
 import sampleImg from "/Hobbit_.jpg"
 import { toast } from "react-toastify";
+import saveIcon from "../assets/saveicon (2).png"
+import bookInfoIcon from "../assets/open-book.png"
+import moreInfoIcon from "../assets/document.png"
+// import publicationinfo from "../assets/publication.png"
 
 export default function EditBookPage() {
     const [book, setBook] = useState({
@@ -18,13 +22,13 @@ export default function EditBookPage() {
         genre: "Classic Fiction",
         status: "active"
     });
+    const bkid = useParams('id')
 
-    useEffect(()=>{
-        async function fetchAllBookDetails(){
-            const bkid=useParams('id')
+    useEffect(() => {
+        async function fetchAllBookDetails() {
         }
         fetchAllBookDetails()
-    },[])
+    }, [])
 
     const fileInputRef = useRef();
 
@@ -55,7 +59,6 @@ export default function EditBookPage() {
         return (
             <div className={`input-container ${divType}`}>
                 <label htmlFor={name}>
-                    {/* Icon will be imported and placed here */}
                     {fieldIcon && <span> <img src={fieldIcon} alt="" /> </span>}
                     {labelText}
                 </label>
@@ -110,11 +113,19 @@ export default function EditBookPage() {
                     </div>
                     <div className="header-buttons">
                         <button type="button" className="header-btn cancel-btn">
-                            {/* <!-- Cancel icon will go here --> */}
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width={22} height={17} viewBox="0 0 23 23"
+                                fill="none"
+                                stroke={"white"} strokeWidth="3.6" strokeLinecap="round" strokeLinejoin="round"
+                            >
+                                <line x1="19" y1="6" x2="8" y2="18" />
+                                <line x1="8" y1="6" x2="19" y2="18" />
+                            </svg>
                             Cancel
                         </button>
                         <button type="button" className="header-btn save-btn">
-                            {/* <!-- Save icon will go here --> */}
+                            <img src={saveIcon} alt="" className="iconimg" />
                             Save Changes
                         </button>
                     </div>
@@ -124,12 +135,12 @@ export default function EditBookPage() {
                     <div className="edit-form-details-grid">
                         <div className="image-section">
 
-                            <div class="book-cover-container">
+                            <div className="book-cover-container">
                                 <h3>
-                                    Existing Book Cover 
+                                    Existing Book Cover
                                 </h3>
-                                <div class="book-image-container">
-                                    <div class="book-image">
+                                <div className="book-image-container">
+                                    <div className="book-image">
                                         <img src={sampleImg || "/placeholder.svg"} alt="Prev image" />
                                     </div>
                                 </div>
@@ -139,7 +150,7 @@ export default function EditBookPage() {
                         <div className="editdetails-input-sections">
                             <div className="details-input-subs">
                                 <div className="section-title">
-                                    {/* <!-- Book icon will go here --> */}
+                            <img src={bookInfoIcon} alt="" style={{width:"28px",height:"24px",margin:"0 4px"}}/>
                                     <h3>Basic Information</h3>
                                 </div>
                                 <div className="input-grid">
@@ -156,6 +167,7 @@ export default function EditBookPage() {
                                         name="author"
                                         value={book.author}
                                         fieldIcon="user"
+                                        divType="full-width"
                                         required={true}
                                     />
 
@@ -166,13 +178,7 @@ export default function EditBookPage() {
                                         required={true}
                                     />
 
-                                    <LabeledInput
-                                        labelText="Publication Date"
-                                        name="publicationDate"
-                                        value={book.publicationDate}
-                                        inputType="date"
-                                        fieldIcon="calendar"
-                                    />
+                                    
 
                                     <LabeledInput
                                         labelText="Genre"
@@ -192,23 +198,24 @@ export default function EditBookPage() {
                             </div>
                             <div className="details-input-subs">
                                 <div className="section-title">
+                                    <img src={moreInfoIcon} alt="" style={{width:"20px",height:"20px",margin:"0 4px"}}/>
                                     {/* <!-- FileText icon will go here --> */}
                                     <h3>Additional Details</h3>
                                 </div>
                                 <div className="input-grid">
-                                <LabeledInput
-                                        labelText="Price ($)"
+                                    <LabeledInput
+                                        labelText="Price (₹)"
                                         name="price"
                                         value={book.price}
                                         inputType="number"
                                         fieldIcon="dollar"
-                                        divType="full-width"
+                                        
                                         required={true}
-                                        />
+                                    />
                                     <LabeledInput
                                         labelText="ISBN"
                                         name="isbn"
-                                        divType="full-width"
+                                        
                                         value={book.isbn}
                                         fieldIcon="hash"
                                     />
@@ -236,38 +243,39 @@ export default function EditBookPage() {
                                     />
                                     
                                     */
-                                     }
+                                    }
                                     <div className="mobile-buttons full-width">
-                    <button
-                      type="button"
-                      className="header-btn cancel-btn"
-                      style={{
-                        padding: "10px 20px",
-                        backgroundColor: "white",
-                        color: "#f97316",
-                        border: "1px solid #ffce79",
-                        borderRadius: "10px",
-                        marginRight: "10px",
-                      }}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      style={{
-                        padding: "10px 20px",
-                        background: "linear-gradient(to right, #f97316, #f59e0b)",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "10px",
-                        fontWeight: "500",
-                      }}
-                    >
-                      Save Changes
-                    </button>
-                  </div>
-                
-                                    
+                                        <button
+                                            type="button"
+                                            className="header-btn cancel-btn"
+                                            style={{
+                                                padding: "10px 20px",
+                                                backgroundColor: "white",
+                                                color: "#f97316",
+                                                border: "1px solid #ffce79",
+                                                borderRadius: "10px",
+                                                marginRight: "10px",
+                                            }}
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            style={{
+                                                padding: "10px 20px",
+                                                background: "linear-gradient(to right, #f97316, #f59e0b)",
+                                                color: "white",
+                                                border: "none",
+                                                borderRadius: "10px",
+                                                fontWeight: "500",
+                                            }}
+                                        >
+                                            
+                                            Save Changes
+                                        </button>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
