@@ -1,23 +1,28 @@
 .outer-book-form-cont{
     background: transparent;
-    width: inherit;
-    height: 100vh;
-    padding: 10px 0;
+   display:block;
+   width:100%;
+   /* min-height: 50vh; */
+   align-content:center;
+   margin:0 auto;
+   padding:1px 5px;
+   padding-bottom:18px;
 }
 
 .book-form-container {
     background-color: rgba(233, 230, 230, 0.751);
     width: 440px;
-    height: 610px;
+    height: inherit;
     margin: 8px 14px;
     margin-top: 10px;
     display: flex;
     align-self: center;
     justify-self: center;
-    
     border-radius: 2px;
-    box-shadow: 1px 4px 7px rgba(123, 122, 122, 0.487), 0px 3px 8px rgba(145, 145, 145, 0.431);
     flex-direction: column;
+    box-shadow: 1px 4px 7px rgba(123, 122, 122, 0.487), 0px 3px 8px rgba(145, 145, 145, 0.431);
+    /* overflow-y: scroll; */
+
     align-items: center;
     
 }
@@ -46,16 +51,34 @@
     flex-direction: column;
     width: 100%;
     gap: 6px;
-    padding: 2px 40px;
+    padding-bottom: 15px;
+    padding: 22px 40px;
     height: 100%;
     
 }
 
+.book-details-input textarea {
+    outline-color: rgb(248, 103, 13);
+    border: none;
+    outline-style: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .9rem    ;
+    padding: 7px 12px;
+    outline-width: 3px;
+    max-width: 100%;
+    min-height: 40px;
+    height: 70px;
+    -webkit-text-fill-color: rgba(122, 121, 119, 0.87);
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 20px;
+    text-align: justify;
+}
 .book-details-input input {
     border-radius: 6px;
     width: 100%;
     height: 40px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.88);
     /* outline-offset: 3px; */
     outline-width: 3px;
     border-color: rgb(214, 149, 29);
@@ -66,7 +89,7 @@
     outline-color: rgb(248, 103, 13);
 }
 
-.book-details-input input:focus {
+.book-details-input input:focus,textarea:focus {
     outline-style: solid;
     transform: translateY(-1.9px);
 
@@ -100,6 +123,39 @@
     outline: none;
 }
 
+
+
+.details {
+    display: none;
+    width: 100%;
+    gap: 6px;
+    margin: 4px 0;
+  }
+  
+  #toggle-details:checked + .toggle-label + .details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .toggle-label {
+    color: #0048ff;
+    cursor: pointer;
+    font-size: 17px;
+    margin: 4px 0;
+    font-weight: 500;
+  }
+  
+  .toggle-label:hover {
+    text-decoration: underline;
+  }
+
+
+  #toggle-details:checked + .toggle-label::before {
+    content: 'Hide details';
+  }
+  .toggle-label::before {
+    content: 'Show more details';
+  }
 @media screen and (max-width: 480px) {
     .book-form-container {
         width: 90%;
@@ -112,6 +168,10 @@
     .book-details-input button {
     margin-top: 12px;}
     
+    .book-details-input textarea {
+        height: 58px;
+        margin-bottom: 15px;
+    }
     .book-details-input input {
         height: 36px;
         margin-bottom: 15px;
