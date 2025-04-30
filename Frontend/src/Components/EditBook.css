@@ -19,8 +19,8 @@
     height: 100%;
     display: flex;
     /* align-items: center; */
-    overflow-y: scroll;
-
+    overflow-y: hidden;
+    
 }
 .editbook-form-container form::-webkit-scrollbar {
     display: none;
@@ -45,7 +45,7 @@
     padding: 28px 40px;
     /* background: rgb(185, 183, 183); */
     flex-grow: 1; 
-    overflow-y: scroll;
+    overflow-y: hidden;
     
 }
 .edit-form-details-grid::-webkit-scrollbar {
@@ -262,7 +262,9 @@ img.iconimg{
 .editbook-form-container form {
     overflow-y: scroll;
 }
-
+.edit-form-details-grid{
+    overflow-y: scroll;
+}
 .edit-form-details-grid .image-section{
  grid-column: span 2;
  width: 100%;

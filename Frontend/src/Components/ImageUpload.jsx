@@ -26,7 +26,7 @@ export default function ImageUpload({ fileRef, textToDisplay, onFileSelect ,exte
       }
       try{
 
-        toast.success('File Uploaded')
+        toast.success('File Uploaded',{theme:"light",position:"bottom-left"})
         reader.readAsDataURL(file)
       }
       catch(err){
@@ -80,7 +80,7 @@ export default function ImageUpload({ fileRef, textToDisplay, onFileSelect ,exte
     if (typeof onFileSelect === "function") {
       onFileSelect(null)
     }
-    toast.error('File Removed')
+    toast.error('File Removed',{theme:"light",position:"bottom-left"})
   }
 
   return (

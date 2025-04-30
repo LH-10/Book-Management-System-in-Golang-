@@ -8,12 +8,22 @@ import(
 
 var db *gorm.DB
 
+// type Book struct{
+// 	gorm.Model
+// 	Name string `gorm:""json:"name"`
+// 	Author string `json:"author"`
+// 	Publication string `json:"publication"`
+// 	ImagePath string  `json:"imagepath"`
+// }
 type Book struct{
 	gorm.Model
 	Name string `gorm:""json:"name"`
 	Author string `json:"author"`
 	Publication string `json:"publication"`
 	ImagePath string  `json:"imagepath"`
+	Summary string	`json:"summary"`
+	Price int64 `json:"price"`
+	Isbn string `json:"isbn"`
 }
 
 func init(){
@@ -48,6 +58,12 @@ func DeleteBook(Id int64) Book{
 	var dbook Book
  db.Where("ID=?",Id).Delete(dbook)
  return dbook
+}
+
+func GetColumns(Id int64,columnlist []string,customStruct *Book){
+	// var dbook struct{ImagePath string}
+	_=db.Table("books").Select(columnlist).Where("ID=?",Id).Scan(&customStruct)
+	fmt.Println(columnlist,customStruct)
 }
 
 func UpdateBook(Id int64,upBook Book) Book{

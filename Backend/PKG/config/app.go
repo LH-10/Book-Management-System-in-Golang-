@@ -31,7 +31,7 @@ func userString() string {
 	// fmt.Printf("Enter database name:")
 	// fmt.Scan(&databaseName)
 	// credString=fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/%s?charset=utf8&parseTime=True&loc=Local",username,pass,databaseName)
-	 credString:="root:sqlsys@tcp(127.0.0.1:3306)/bookstore?charset=utf8&parseTime=True&loc=Local"
+	 credString:="root:sqlsys@tcp(127.0.0.1:3306)/bookstoretest?charset=utf8&parseTime=True&loc=Local"
 	fmt.Println("\n-----------------Done-----------------")
 	return credString
 
