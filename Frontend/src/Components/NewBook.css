@@ -137,7 +137,7 @@
     flex-direction: column;
   }
   
-  .toggle-label {
+  .book-details-input .toggle-label {
     color: #0048ff;
     cursor: pointer;
     font-size: 17px;
@@ -154,7 +154,7 @@
     content: 'Hide details';
   }
   .toggle-label::before {
-    content: 'Show more details';
+    content: 'Show more  details';
   }
 @media screen and (max-width: 480px) {
     .book-form-container {

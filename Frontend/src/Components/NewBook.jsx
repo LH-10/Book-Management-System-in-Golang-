@@ -9,7 +9,7 @@ import { Slide, toast, ToastContainer } from "react-toastify";
 
 export default function NewBook() {
 
-    const [bookTitle, bookAuthor, bookPublication, bookPrice] = [useRef(), useRef(), useRef(), useRef()]
+    const [bookTitle, bookAuthor, bookPublication, bookPrice,bookIsbn,bookSummary] = [useRef(), useRef(), useRef(), useRef(),useRef(), useRef()]
     const imageFile=useRef()
     const navigate=useNavigate()
     const handlSubmit= async (e)=>{
@@ -19,7 +19,10 @@ export default function NewBook() {
         const Jobj={
             name:bookTitle.current.value,
             Author:bookAuthor.current.value,
-            Publication:bookPublication.current.value
+            Publication:bookPublication.current.value,
+            Summary:bookIsbn.current.value,
+            Price:parseInt(bookPrice.current.value),
+            Isbn:bookSummary.current.value,
         }
         formData.append("documentj",JSON.stringify(Jobj))
         console.log(Jobj)
@@ -36,7 +39,7 @@ export default function NewBook() {
                     theme:"colored",
                     position:"top-center",
                     onClose:(()=>{
-                        navigate('./dashboard')
+                        navigate('../dashboard')
                     })
                 })
             }
@@ -86,9 +89,23 @@ export default function NewBook() {
                     <label htmlFor="">Publication</label>
                     <input type="text" ref={bookPublication} placeholder="Enter publication name" id="publication" required pattern="^[a-zA-Z0-9\s]+$" />
 
+                    <label htmlFor="">Isbn</label>
+                    <input type="text" ref={bookIsbn} placeholder="Enter book price" id="price" required  />
                     <label htmlFor="">Price</label>
                     <input type="text" ref={bookPrice} placeholder="Enter book price" id="price" required pattern="^\d+(\.\d{1,2})?$" />
-
+                        <input type="checkbox" id="toggle-details" style={{ display: 'none' }} />
+                        
+                        <label className="toggle-label" htmlFor="toggle-details"></label>
+                        
+                        <div className="details">
+                            <label htmlFor="summary">Description</label>
+                            <textarea
+                            ref={bookSummary}
+                            id="summary"
+                            placeholder="Enter book summary"
+                            rows="4"
+                            />
+                        </div>
                     <button type="submit" >Submit</button>
                 </div>
             </form>
