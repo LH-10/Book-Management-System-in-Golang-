@@ -29,9 +29,16 @@ const BooksDisplay = () => {
                 console.log(err+" error occured during navigate")
             }
         }
+        const handleCardClick = ()=>{try{
+            navigate(`./viewbook/${book.id}`)
+        }
+        catch(err){
+            console.log(err+" error occured during navigate")
+        }
+    }
         return(
             <>
-            <div className="bookcard">
+            <div className="bookcard" onClick={handleCardClick}>
                 <div className="card-options">
                     <div >
                         <img src={editIcon} alt="edit" onClick={handleEditClick}/>

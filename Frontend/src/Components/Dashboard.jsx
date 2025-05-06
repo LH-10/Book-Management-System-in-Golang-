@@ -5,6 +5,7 @@ import "./dashboard.css"
 import { Route, Routes } from "react-router-dom";
 import NewBook from "./NewBook";
 import EditBookPage from "./EditBookPage";
+import ViewBookDetails from "./ViewBookDetails";
 export default function Dashboard(){
     return(
         <>
@@ -13,6 +14,7 @@ export default function Dashboard(){
           <Routes>
 
             <Route path="/dashboard" element={<BooksDisplay/>}/>
+            <Route path="/dashboard/viewbook/:id" element={<ViewBookDetails/>}/>
             <Route path="/addbook" element={<NewBook/>}/>
             <Route path="/editbook/:bkid" element={<EditBookPage/>}/>
           </Routes>
