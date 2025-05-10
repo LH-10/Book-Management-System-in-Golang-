@@ -1,6 +1,7 @@
 .view-bookdetails-container {
-    padding: 24px;
-    margin: 48px auto;
+  padding: 24px;
+  margin: 48px auto;
+  position: relative;
     max-width: 1200px;
     width: 1100px;
     align-self: center;
@@ -9,9 +10,71 @@
     box-shadow: 1px 1px 20px rgb(187, 187, 187);
     display: flex;
     transition: all 0.3s ease;
-}
-
-.view-bookdetails-container .image-side {
+    flex-direction: column;
+  }
+  
+  .view-bookdetails-container .option-btns{
+    padding: 2.5px 23px;
+    display: flex;
+    margin: 10px;
+    height: 40px;
+    margin-top: 0;
+    justify-content: flex-end;
+    position: relative;
+    width: 100%; 
+    transition: all .4s ease-in-out;
+    gap: 8px;
+  }
+  .view-bookdetails-container .option-btns span{
+    padding: 15px ;
+    /* border: #2ecbf7 solid; */
+    margin: 1px 6px;
+    background: rgb(255, 255, 255);
+    max-height: 47px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: start  ;
+    overflow: hidden;
+    width: 60px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .7s ease-in-out;
+    transform-origin: right;
+  }
+  .view-bookdetails-container .option-btns span img{
+    max-height: 25px; width: 100%;
+    transition: all .7s ease-in-out;
+  }
+  .view-bookdetails-container .option-btns span::after{
+    color: #00aad9;
+    padding: 0 5px;
+    width: 100%;
+    position: relative;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transform: translateX(100%);
+  
+    transition: all .7s ease-in-out;
+  }
+  
+  .view-bookdetails-container .option-btns span:hover{
+    width: auto;
+  }
+  .view-bookdetails-container .option-btns span:hover:after{
+    transform: translateX(0);
+    ;
+  }
+  .view-bookdetails-container .option-btns span:first-child::after{
+    content: "Edit ";
+  }
+  .view-bookdetails-container .option-btns span:last-child::after{
+    content: "Delete";
+  }
+  .view-bookdetails-container .view-bookdetails-container-sub{
+    display: flex;
+  }
+  .view-bookdetails-container .image-side {
     margin: 20px 35px 20px 0;
     padding: 20px;
     display: flex;
@@ -52,14 +115,14 @@
 .view-bookdetails-container .title-div h3 {
     color: #d94f00;
     margin: 0 0 5px 0;
-    font-size: 18px;
+    font-size: 20px;
     width: 100%; 
     word-wrap: break-word; 
 }
 
 .view-bookdetails-container .title-div p {
     color: #333;
-    font-size: 22px;
+    font-size: 27px;
     font-weight: bold;
     margin: 0;
 }
@@ -136,7 +199,11 @@
       min-width: auto;
       margin: 30px auto;
     }
-    
+    .view-bookdetails-container .view-bookdetails-container-sub{
+      flex-direction: column;
+      
+    }
+
     .view-bookdetails-container .image-side {
       width: auto;
       border-right: none;

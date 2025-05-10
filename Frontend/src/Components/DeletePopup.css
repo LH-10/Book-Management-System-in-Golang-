@@ -1,0 +1,149 @@
+.delete-popup-cc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
+  }
+  
+  .delete-button {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .delete-button:hover {
+    background-color: #dc2626;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .modal-container {
+    background: linear-gradient(to bottom right, #fff7ed, #ffffff);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid #fed7aa;
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  .modal-content {
+    padding: 24px;
+  }
+  
+  .modal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .icon-container {
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    background-color: #ffedd5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+  }
+  
+  .warning-icon {
+    height: 24px;
+    width: 24px;
+    color: #f97316;
+  }
+  
+  .modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #9a3412;
+    margin: 0;
+  }
+  
+  .modal-description {
+    text-align: center;
+    color: #c2410c;
+    font-size: 14px;
+    margin: 0;
+    box-sizing: border-box;
+    
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  
+  .cancel-button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    background-color: transparent;
+    border: 1px solid #fdba74;
+    color: #c2410c;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .cancel-button:hover {
+    background-color: #fff7ed;
+    color: #9a3412;
+  }
+  
+  .confirm-button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    background-color: #f97316;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .confirm-button:hover {
+    background-color: #ea580c;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
