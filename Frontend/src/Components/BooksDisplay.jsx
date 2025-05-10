@@ -6,16 +6,16 @@ import editIcon from "../assets/edit-icon.png"
 import addIcon from "../assets/add-icon (3).png"
 import { Link, useNavigate } from "react-router-dom"
 import { BASE_URL } from "../configs/Urls"
+import DeletePopup from "./DeletePopup"
 
 const BooksDisplay = () => {
-
-    
+    const [openDelete,setOpenDelete]=useState(false)
+    const [selectedBook,setSelectedBook]=useState({})
     const BookCard=({book})=>{
         const handleDeleteBook=async()=>{
             try {
-                const response= await axios.delete(`${BASE_URL}/book/${book.id}`)
-                console.log(response)
-                window.location.reload();
+                setSelectedBook({id:book.id,name:book.title,...book})
+                setOpenDelete(true)
 
             } catch (error) {
                 console.log(error)
@@ -38,7 +38,7 @@ const BooksDisplay = () => {
     }
         return(
             <>
-            <div className="bookcard" onClick={handleCardClick}>
+            <div className="bookcard" >
                 <div className="card-options">
                     <div >
                         <img src={editIcon} alt="edit" onClick={handleEditClick}/>
@@ -48,13 +48,13 @@ const BooksDisplay = () => {
                     </div>
                     
                 </div>
-                <div className="titlesection">
+                <div className="titlesection" >
                     <img src={`${BASE_URL}/${book.image}`} alt=""  />
                    <h3>
                     {book.title}
                     </h3> 
                 </div>
-                <div className="bookinfo">
+                <div className="bookinfo" onClick={handleCardClick}>
                     <ul>
                         <li>{book.author}</li>
                         <li>{book.publication}</li>
@@ -130,7 +130,7 @@ const BooksDisplay = () => {
                     <BookCard key={book.ID} book={{id:book.ID,title:book.name, author:book.author, publication:book.publication , image:book.imagepath}}/>
                 ))
                 :<></>}
-
+            <DeletePopup book={selectedBook} openstates={[openDelete,setOpenDelete]}/>
             </div>
         </>
     )
