@@ -22,6 +22,7 @@ func main(){
 	}
 	r:=mux.NewRouter()
 	routers.RegisterBookStoreRoutes(r)
+	routers.RegisterAuthRoutes(r)
 	bookImageFolderPath:=os.Getenv("Book_Images_Path")
 	files:=http.FileServer(http.Dir(bookImageFolderPath))
 	r.Handle("/images/{files}",http.StripPrefix("/images/",files))
