@@ -35,6 +35,7 @@ export default function DeletePopup({ book , openstates}) {
 
   const handleDeleteClick = async () => {
     try {
+      
       await axios.delete(`${BASE_URL}/book/${book.id}`)
       toast.success("Deleted")
       setIsOpen(false)

@@ -48,7 +48,7 @@ const BooksDisplay = () => {
                     </div>
                     
                 </div>
-                <div className="titlesection" >
+                <div className="titlesection" style={{cursor:"pointer"}} onClick={handleCardClick}>
                     <img src={`${BASE_URL}/${book.image}`} alt=""  />
                    <h3>
                     {book.title}

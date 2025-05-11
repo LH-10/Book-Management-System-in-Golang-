@@ -91,7 +91,7 @@ export default function ViewBookDetails(){
             </div>
             </div>
         </div>
-        <DeletePopup book={bookDetails} openstates={[openDelete,setOpenDelete]}/>
+        <DeletePopup book={{id:id,...bookDetails}} openstates={[openDelete,setOpenDelete]}/>
         </>
     )
 }
