@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import NewBook from "./NewBook";
 import EditBookPage from "./EditBookPage";
 import ViewBookDetails from "./ViewBookDetails";
+import { ToastContainer } from "react-toastify";
 export default function Dashboard(){
     return(
         <>
@@ -20,6 +21,7 @@ export default function Dashboard(){
           </Routes>
             
         </div>
+
         </>
     )
 }

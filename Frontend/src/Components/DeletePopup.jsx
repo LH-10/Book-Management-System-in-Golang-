@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from "react"
 import axios from "axios"
-import { toast } from "react-toastify"
+import { toast, ToastContainer } from "react-toastify"
 import { BASE_URL } from "../configs/Urls"
 import "./DeletePopup.css" 
+import { useNavigate } from "react-router-dom"
 
 export default function DeletePopup({ book , openstates}) {
   const [isOpen, setIsOpen] = openstates || useState()
   const modalRef = useRef(null)
-
+  const navigate=useNavigate()
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") setIsOpen(false)
@@ -37,8 +38,9 @@ export default function DeletePopup({ book , openstates}) {
     try {
       
       await axios.delete(`${BASE_URL}/book/${book.id}`)
-      toast.success("Deleted")
+      toast.success("Book Record Deleted",{autoClose:1000,onClose:(()=>{window.location.assign("/home/dashboard")})})
       setIsOpen(false)
+      
     } catch (error) {
       console.error(error)
       toast.error("Could not delete")
@@ -46,6 +48,7 @@ export default function DeletePopup({ book , openstates}) {
   }
 
   return (
+    <>
     <div className="delete-popup-c">
      
 
@@ -80,5 +83,7 @@ export default function DeletePopup({ book , openstates}) {
         </div>
       )}
     </div>
+      <ToastContainer position="top-center" theme="colored" autoClose={1000}/>
+      </>
   )
 }

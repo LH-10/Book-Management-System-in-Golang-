@@ -107,7 +107,16 @@ export default function EditBookPage() {
     }, [changesMade])
 
     const fileInputRef = useRef();
-    
+    const goBack=()=>{
+        try{
+
+            history.go(-1)
+        }
+        catch(err){
+            toast.info("There was some problem going back")
+            console.log(err)
+        }
+    }
     const isImageSelected=()=>Boolean(fileInputRef.current.files[0]);
     const haveDetailsChanged=()=>{
         console.log("image:",isImageSelected())
@@ -170,7 +179,9 @@ export default function EditBookPage() {
                         <p>Update information for this book in your inventory</p>
                     </div>
                     <div className="header-buttons">
-                        <button type="button" className="header-btn cancel-btn">
+                        <button type="button"
+                            onClick={goBack}
+                        className="header-btn cancel-btn">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width={22} height={17} viewBox="0 0 23 23"
@@ -297,13 +308,7 @@ export default function EditBookPage() {
                                     />
                                     {/* 
                                     
-                                    <LabeledInput
-                                        labelText="ISBN"
-                                        name="isbn"
-                                        setBook={setBook}
-                                        value={book.isbn}
-                                        fieldIcon="hash"
-                                        />
+                                   
                                     
                                     <LabeledInput
                                         labelText="Number of Pages"
@@ -317,7 +322,8 @@ export default function EditBookPage() {
                                     }
                                     <div className="mobile-buttons full-width">
                                         <button
-                                            type="button"
+                                                onClick={goBack}type="button"
+
                                             className="header-btn cancel-btn"
                                             style={{
                                                 padding: "10px 20px",
