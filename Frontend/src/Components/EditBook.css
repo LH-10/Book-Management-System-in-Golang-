@@ -6,6 +6,7 @@
     border-radius: 25px;
     /* background-color: aqua; */
     margin: 3px auto;
+    margin-top: 35px;
     margin-bottom: 10px;
     /* min-width: 856px; */
     max-width: 1280px;
@@ -252,6 +253,11 @@ img.iconimg{
 }
 
 
+@media  (min-height: 1077px) {
+    .editbook-form-container{
+        min-height: 1080px;
+    }
+}
 @media (max-width: 943px) {
 
 .edit-form-details-grid{
@@ -277,6 +283,7 @@ img.iconimg{
 @media (max-width: 768px) {
     .edit-form-details-grid {
         grid-template-columns: 1fr;
+        margin-bottom: 50px;
     }
     
     .details-input-subs .input-grid {
