@@ -22,8 +22,8 @@ func (usr *User) AddNewUser(){
 	db.NewRecord(usr)
 	db.Create(usr)
 }
-func (usr *User) GetByUsername()(string){
+func (usr *User) GetByEmail()(string){
 	getUser:=&User{}
-	db.Where("name=?",usr.Name).Find(getUser)
+	db.Where("email=?",usr.Email).Find(getUser)
 	return getUser.Password
 }

@@ -16,7 +16,7 @@ func VerifyUser(r *http.Request)(string,error){
 	},jwt.WithValidMethods([]string{jwt.SigningMethodHS256.Alg()}))
 
 	if err!=nil{
-		log.Print("Error occured ",err.Error())
+		log.Print("Could not verify user ",err.Error())
 		return "",err
 	}
 	claims, ok := token.Claims.(jwt.MapClaims)

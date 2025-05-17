@@ -16,7 +16,7 @@ func LoginHandler(w http.ResponseWriter,r *http.Request){
 	loginUser:=&models.User{}
 	utils.ParseBody(r,loginUser)
 	fmt.Println(loginUser)
-	dbHash:=loginUser.GetByUsername()
+	dbHash:=loginUser.GetByEmail()
 	passwordMatch,err:=utils.ComparePasswordAndHash(loginUser.Password,dbHash)
 
 	if err!=nil{
@@ -32,7 +32,7 @@ func LoginHandler(w http.ResponseWriter,r *http.Request){
 	log.Println("Login Successfull")
 	
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-	"user": loginUser.Name,
+	"user": loginUser.Email,
 	})
 	tokenString, err := token.SignedString([]byte(os.Getenv("JWT_Secret")))
 	if err!=nil{

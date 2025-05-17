@@ -29,5 +29,7 @@ func main(){
 	http.Handle("/",r)
 	allowedMethods:=handlers.AllowedMethods([]string{"GET","PUT","POST","DELETE","HEAD"})
 	allowedOrigins:=handlers.AllowedOrigins([]string{"*"})
-	log.Fatal(http.ListenAndServe(":8000",handlers.CORS(allowedOrigins,allowedMethods)(r)))
+	allowedHeaders :=handlers.AllowedHeaders([]string{"Content-Type", "Authorization", "X-Requested-With"})
+	log.Fatal(http.ListenAndServe(":8000",handlers.CORS(allowedOrigins,allowedMethods,allowedHeaders)(r)))
+
 }
