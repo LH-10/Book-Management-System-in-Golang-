@@ -175,6 +175,11 @@
         visibility: visible;
     }
 }
+@media screen and (max-width:758px) {
+    .booksContainer{
+        padding-bottom: 50px;
+    }
+}
 @media screen and (max-width:676px) {
     .booksContainer{
         grid-template-columns: repeat(1,auto);

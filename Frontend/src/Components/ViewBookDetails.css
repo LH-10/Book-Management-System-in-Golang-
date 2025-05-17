@@ -226,7 +226,8 @@
   @media (max-width: 768px) {
     .view-bookdetails-container {
       padding: 16px;
-      margin: 24px auto;
+      margin: 34px auto;
+      margin-bottom: 80px;
       width: 90%;
     }
     
@@ -265,6 +266,7 @@
     .view-bookdetails-container {
       padding: 12px;
       margin: 16px auto;
+      margin-bottom: 80px;
       width: 95%;
       border-radius: 8px;
     }
@@ -321,6 +323,7 @@
     .view-bookdetails-container {
       padding: 10px;
       margin: 12px auto;
+      margin-bottom: 30px;
     }
     
     .view-bookdetails-container .image-side img {

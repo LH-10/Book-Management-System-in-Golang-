@@ -156,6 +156,11 @@
   .toggle-label::before {
     content: 'Show more  details';
   }
+@media screen and (max-width: 758px) {
+    .outer-book-form-cont{
+        margin-bottom: 45px;
+    }
+}
 @media screen and (max-width: 480px) {
     .book-form-container {
         width: 90%;
