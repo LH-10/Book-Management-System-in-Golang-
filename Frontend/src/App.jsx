@@ -6,6 +6,9 @@ import './App.css'
 import BooksDisplay from './Components/BooksDisplay'
 import Dashboard from './Components/Dashboard'
 import NewBook from './Components/NewBook'
+import LandingPage from './Components/LandingPage'
+import Login from './Components/AuthComponents/Login'
+import Signup from './Components/AuthComponents/Signup'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,6 +17,9 @@ function App() {
     <>
       <Routes>
         <Route path="/home/*" element={<Dashboard/>}/>
+        <Route path="/landing" element={<LandingPage/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<Login/>}/>
 
       </Routes>
     </>
