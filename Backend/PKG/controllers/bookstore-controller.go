@@ -53,6 +53,16 @@ import(
 	}
 
 	func GetBooks(w http.ResponseWriter,r *http.Request){
+		useremail,err:=utils.VerifyUser(r)
+		log.Println(useremail)
+		if err!=nil{
+			log.Println(err,err.Error())
+			utils.MakeResponseJson(&w,map[string]interface{}{
+				"error":"You are not logged in!", 
+			},
+			false)
+			return
+		}
 		allbooks:=models.GetAllBooks()
 		res , _ :=json.Marshal(allbooks)
 		w.Header().Set("Content-type","application/json")
@@ -82,6 +92,15 @@ import(
 			fmt.Println("Error occured while conversion")
 		}
 		
+		mybook :=models.Book{}
+		models.GetColumns(Id,[]string{"image_path"},&mybook)
+		fileToDelete:=strings.Replace(mybook.ImagePath,os.Getenv("Book_Image_URL_For_Client"),os.Getenv("Book_Images_Path"),1)
+		fmt.Println(fileToDelete)
+		if err:=os.Remove(fileToDelete);err!=nil{
+			log.Print(err)
+		}else{
+			fmt.Println("Old File Deleted")
+		}
 		thatBook:=models.DeleteBook(Id)
 		res,_:=json.Marshal(thatBook)
 		w.Header().Set("Content-Type","application/json")

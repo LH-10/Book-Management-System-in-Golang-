@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
+import { axiosWithAuthHeader } from "../../axiosInstance/withHeader"
+
 import "./books.css"
 import binIcon from "../../assets/bin-icon.png"
 import editIcon from "../../assets/edit-icon.png"
@@ -75,7 +76,7 @@ const BooksDisplay = () => {
     useEffect(() => {
         async function getallbooks() {
             try {
-                const resp = await axios.get(`${BASE_URL}/book/`)
+                const resp = await axiosWithAuthHeader.get(`${BASE_URL}/book/`)
                 if (resp.data) {
                     setAllBooks(resp.data)
                     console.log(resp.data)
