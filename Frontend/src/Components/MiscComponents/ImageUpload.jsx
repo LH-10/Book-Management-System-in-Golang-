@@ -1,7 +1,7 @@
 import "./ImageUpload.css"
 import { useRef, useState } from "react"
-import fileUploadIcon from "../assets/file (1).png"
-import DeleteIcon from "../assets/crossicon.png"
+import fileUploadIcon from "../../assets/file (1).png"
+import DeleteIcon from "../../assets/crossicon.png"
 import {Slide, ToastContainer,toast} from 'react-toastify'
 
 

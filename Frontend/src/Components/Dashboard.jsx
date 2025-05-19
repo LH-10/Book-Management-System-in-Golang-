@@ -1,11 +1,11 @@
 import React from "react";
 import Navbar from "./Navbar";
-import BooksDisplay from "./BooksDisplay";
+import BooksDisplay from "./BookComponents/BooksDisplay";
 import "./dashboard.css"
 import { Route, Routes } from "react-router-dom";
-import NewBook from "./NewBook";
-import EditBookPage from "./EditBookPage";
-import ViewBookDetails from "./ViewBookDetails";
+import NewBook from "./BookComponents/NewBook";
+import EditBookPage from "./BookComponents/EditBookPage";
+import ViewBookDetails from "./BookComponents/ViewBookDetails";
 import { ToastContainer } from "react-toastify";
 export default function Dashboard(){
     return(

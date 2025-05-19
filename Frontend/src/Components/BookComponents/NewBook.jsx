@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 // import { navigate, Route } from "react-router-dom"
 import "./NewBook.css"
-import ImageUpload from "./ImageUpload";
-import { BASE_URL } from "../configs/Urls"
+import ImageUpload from "../MiscComponents/ImageUpload";
+import { BASE_URL } from "../../configs/Urls"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import { Slide, toast, ToastContainer } from "react-toastify";

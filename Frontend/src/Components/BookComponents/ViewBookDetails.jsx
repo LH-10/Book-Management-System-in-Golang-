@@ -2,11 +2,12 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { toast } from "react-toastify"
 import "./ViewBookDetails.css"
-import { BASE_URL } from "../configs/Urls"
+import { BASE_URL } from "../../configs/Urls"
 import axios from "axios"
-import editIcon from "../assets/edit-icon.png" 
-import deleteIcon from "../assets/bin-icon.png" 
-import DeletePopup from "./DeletePopup"
+import editIcon from "../../assets/edit-icon.png" 
+import deleteIcon from "../../assets/bin-icon.png" 
+import DeletePopup from "../MiscComponents/DeletePopup"
+import { FaUser, FaBook, FaBarcode, FaTag, FaFileAlt } from 'react-icons/fa';
 
 export default function ViewBookDetails(){
     const {id}=useParams()
@@ -57,37 +58,37 @@ export default function ViewBookDetails(){
                 </div>
             </div>
             <div className="info-side">
-            <div className="info-side-sub">
-                <div className="info-row">
-                    <div className="info-item">
-                    <strong>Author</strong>
-                    <br />
-                    {bookDetails.author}
-                    </div>
-                    <div className="info-item">
-                    <strong>Publication</strong>
-                    <br />
-                    {bookDetails.publication}
-                    </div>
-                </div>
-                <div className="info-row">
-                    <div className="info-item">
-                    <strong>ISBN</strong>
-                    <br />
-                    {bookDetails.isbn}
-                    </div>
-                    <div className="info-item">
-                    <strong>Price</strong>
-                    <br />
-                    ₹{bookDetails.price}
-                    </div>
-                </div>
-                <div className="summary">
-                    <strong>Summary</strong>
-                    <br />
-                    {bookDetails.summary}
-                </div>
+          <div className="info-side-sub">
+    <div className="info-row">
+        <div className="info-item">
+            <strong><FaUser /> Author</strong>
+            <br />
+            {bookDetails.author}
         </div>
+        <div className="info-item">
+            <strong><FaBook /> Publication</strong>
+            <br />
+            {bookDetails.publication}
+        </div>
+    </div>
+    <div className="info-row">
+        <div className="info-item">
+            <strong><FaBarcode /> ISBN</strong>
+            <br />
+            {bookDetails.isbn}
+        </div>
+        <div className="info-item">
+            <strong><FaTag /> Price</strong>
+            <br />
+            ₹{bookDetails.price}
+        </div>
+    </div>
+    <div className="summary">
+        <strong><FaFileAlt /> Summary</strong>
+        <br />
+        {bookDetails.summary}
+    </div>
+</div>
             </div>
             </div>
         </div>

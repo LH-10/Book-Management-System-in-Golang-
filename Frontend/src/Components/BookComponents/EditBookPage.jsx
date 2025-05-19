@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import "./EditBook.css";
 import { useParams } from "react-router-dom"
-import ImageUpload from "./ImageUpload";
+import ImageUpload from "../MiscComponents/ImageUpload";
 import sampleImg from "/Hobbit_.jpg"
 import { toast, ToastContainer } from "react-toastify";
-import saveIcon from "../assets/saveicon (2).png"
-import bookInfoIcon from "../assets/open-book.png"
-import moreInfoIcon from "../assets/document.png"
-import bookCoverIcon from "../assets/bookcover.png"
+import saveIcon from "../../assets/saveicon (2).png"
+import bookInfoIcon from "../../assets/open-book.png"
+import moreInfoIcon from "../../assets/document.png"
+import bookCoverIcon from "../../assets/bookcover.png"
 import axios from "axios";
-import { BASE_URL } from "../configs/Urls";
+import { BASE_URL } from "../../configs/Urls";
 // import publicationinfo from "../assets/publication.png"
 
 const LabeledInput = ({

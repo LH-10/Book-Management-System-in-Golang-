@@ -115,14 +115,14 @@
 .view-bookdetails-container .title-div h3 {
     color: #d94f00;
     margin: 0 0 5px 0;
-    font-size: 20px;
+    font-size: 22px;
     width: 100%; 
     word-wrap: break-word; 
 }
 
 .view-bookdetails-container .title-div p {
     color: #333;
-    font-size: 27px;
+    font-size: 32px;
     font-weight: bold;
     margin: 0;
 }
@@ -174,7 +174,7 @@
 .view-bookdetails-container .info-side .info-side-sub strong {
     font-weight: 600;
     color: #d94f00;
-    font-size: 16px;
+    font-size: 18.5px;
     display: block;
     margin-bottom: 8px;
     letter-spacing: 0.5px;
@@ -183,7 +183,7 @@
 .view-bookdetails-container .info-side .info-side-sub .info-item,
 .view-bookdetails-container .info-side .info-side-sub .summary {
     color: #555;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 @media (max-width: 1200px) {

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import "./books.css"
-import binIcon from "../assets/bin-icon.png"
-import editIcon from "../assets/edit-icon.png"
-import addIcon from "../assets/add-icon (3).png"
+import binIcon from "../../assets/bin-icon.png"
+import editIcon from "../../assets/edit-icon.png"
+import addIcon from "../../assets/add-icon (3).png"
 import { Link, useNavigate } from "react-router-dom"
-import { BASE_URL } from "../configs/Urls"
-import DeletePopup from "./DeletePopup"
+import { BASE_URL } from "../../configs/Urls"
+import DeletePopup from "../MiscComponents/DeletePopup"
 
 const BooksDisplay = () => {
     const [openDelete,setOpenDelete]=useState(false)

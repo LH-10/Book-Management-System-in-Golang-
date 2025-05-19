@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import axios from "axios"
 import { toast, ToastContainer } from "react-toastify"
-import { BASE_URL } from "../configs/Urls"
+import { BASE_URL } from "../../configs/Urls"
 import "./DeletePopup.css" 
 import { useNavigate } from "react-router-dom"
 
