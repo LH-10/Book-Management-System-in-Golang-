@@ -11,10 +11,12 @@ type User struct {
 	gorm.Model
 	Name string `gorm:""json:"name"`
 	Email string `json:"email"`
+	Storename string `gorm:"unique" json:"storename"`
 	Password string `json:"password"`
 }
 
 func init(){
+	//db is accessible from book.go
 	db.AutoMigrate(&User{})
 }
 

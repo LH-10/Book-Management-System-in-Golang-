@@ -4,6 +4,7 @@ import(
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"github.com/LH-10/Book-Management-System-in-Golang-/PKG/config"
+	"time"
 )
 
 var db *gorm.DB
@@ -24,6 +25,9 @@ type Book struct{
 	Summary string	`json:"summary"`
 	Price int64 `json:"price"`
 	Isbn string `json:"isbn"`
+	Storename string 
+	User User `gorm:"foreignKey:Storename , references:Storename"`
+	//`gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE,references:Storename;"`
 }
 
 func init(){
@@ -34,6 +38,12 @@ func init(){
 	}
 	db=config.GetDb()
 	db.AutoMigrate(&Book{})
+	fmt.Println("Initializing database....")
+	go func (){
+		time.Sleep(2 * time.Second)
+		db.Model(&Book{}).AddForeignKey("storename", "users(storename)", "RESTRICT", "CASCADE")
+		fmt.Println("\nInitialization Complete")
+	}()
 }
 
 func (bk *Book) CreateBook() (*Book){
