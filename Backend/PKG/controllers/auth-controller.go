@@ -39,9 +39,12 @@ func LoginHandler(w http.ResponseWriter,r *http.Request){
 		fmt.Print(err)
 	}
 	fmt.Println(token,tokenString)
+	models.GetUserColumns(loginUser.Email,[]string{"name","storename"},loginUser)
 	response:=map[string]interface{}{
 		"result": "success",
 		"jwtToken": tokenString,
+		"username":loginUser.Name,
+		"storename":loginUser.Storename,
 	}
 	utils.MakeResponseJson(&w,response,true)	
 	return

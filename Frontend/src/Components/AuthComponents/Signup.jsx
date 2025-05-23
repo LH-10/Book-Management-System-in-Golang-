@@ -50,7 +50,6 @@ const navigate=useNavigate()
         <div className="signup-form-container">
           <div className="signup-header">
             <h2>Create Your Account</h2>
-            <p>Join our book store community today</p>
           </div>
           
           {error && <div className="signup-error">{error}</div>}

@@ -31,6 +31,8 @@ const Login = () => {
       const response = await axios.post(`${BASE_URL}/api/login`, formData);
       console.log('Login successful:', response.data);
       localStorage.setItem("jwtToken",response.data.jwtToken)
+      localStorage.setItem("username",response.data.username)
+      localStorage.setItem("storename",response.data.storename)
       navigate('/home/dashboard')
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');

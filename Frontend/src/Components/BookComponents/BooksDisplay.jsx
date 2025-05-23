@@ -8,6 +8,7 @@ import addIcon from "../../assets/add-icon (3).png"
 import { Link, useNavigate } from "react-router-dom"
 import { BASE_URL } from "../../configs/Urls"
 import DeletePopup from "../MiscComponents/DeletePopup"
+import { toast } from "react-toastify"
 
 const BooksDisplay = () => {
     const [openDelete,setOpenDelete]=useState(false)
@@ -89,6 +90,7 @@ const BooksDisplay = () => {
             catch (err) {
                 console.log(err)
                 console.log(allbooks)
+                toast.error("Could not load Page",{onClose:()=>navigate("/login")})
             }
         }
         getallbooks()
