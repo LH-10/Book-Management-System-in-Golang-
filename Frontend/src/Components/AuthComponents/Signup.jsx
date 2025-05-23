@@ -4,11 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Signup.css';
 import { FaArrowCircleLeft, FaEnvelopeSquare, FaLock, FaMailBulk, FaMailchimp, FaRegEnvelope, FaStore, FaUser } from 'react-icons/fa';
 import { BASE_URL } from '../../configs/Urls';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Signup = () => {
 const navigate=useNavigate()
   const [formData, setFormData] = useState({
-    username: '',
+    name: '',
     email: '',
     storeName: '',
     password: ''
@@ -32,8 +33,10 @@ const navigate=useNavigate()
     try {
       const response = await axios.post(`${BASE_URL}/api/signup`, formData);
       console.log('Signup successful:', response.data);
+      toast.success("Sigup Successful",{autoClose:1200,onClose:(()=>{navigate("/login")})})
     } catch (err) {
-      setError(err.response?.data?.message || 'Signup failed. Please try again.');
+      console.log(err)
+      setError(err.response?.data || 'Signup failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -59,8 +62,8 @@ const navigate=useNavigate()
                 <input
                   type="text"
                   id="username"
-                  name="username"
-                  value={formData.username}
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
                   placeholder="Choose a username"
                   required
@@ -130,7 +133,7 @@ const navigate=useNavigate()
        
       </div>
       
-      
+      <ToastContainer theme='colored'/>
     </div>
                   </>
   );

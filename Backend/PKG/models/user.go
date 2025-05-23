@@ -20,9 +20,14 @@ func init(){
 	db.AutoMigrate(&User{})
 }
 
-func (usr *User) AddNewUser(){
+func (usr *User) AddNewUser()(error){
+
 	db.NewRecord(usr)
-	db.Create(usr)
+	result:=db.Create(usr)
+	if result.Error!=nil{
+		return result.Error
+	}
+	return nil
 }
 func (usr *User) GetPasswordByEmail()(string){
 	getUser:=&User{}

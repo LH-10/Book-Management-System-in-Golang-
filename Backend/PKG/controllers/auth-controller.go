@@ -9,7 +9,7 @@ import(
 	"github.com/LH-10/Book-Management-System-in-Golang-/PKG/models"
 	"github.com/LH-10/Book-Management-System-in-Golang-/PKG/utils"
 	_"encoding/json"
-	_"strings"
+	"strings"
 )
 
 func LoginHandler(w http.ResponseWriter,r *http.Request){
@@ -55,10 +55,33 @@ func SignupHandler(w http.ResponseWriter,r *http.Request){
 
 	if err!=nil{
 		log.Println("error occured",err)
+		utils.MakeResponseJson(&w,map[string]interface{}{
+			"error":"error occured while registering", 
+		},false)
 		return
 	}
 	
-	newUser.AddNewUser()
+	if err:=newUser.AddNewUser();err!=nil{
+		errString:=err.Error()
+		switch{
+
+		case strings.Contains(errString,"users.email"):
+			errString="Email Entry Already Exists"
+		case strings.Contains(errString,"users.storename"):
+			errString="StoreName Already Exists, Use a different storename"
+		default:
+			errString="Could not register user"
+		}
+		utils.MakeResponseJson(&w,map[string]interface{}{
+			"error":errString, 
+		},false)
+		
+		return
+	}
+	utils.MakeResponseJson(&w,map[string]interface{}{
+		"result": "success",
+		"user":newUser.Name,
+	},true)
 	return 
 }
 
