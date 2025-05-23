@@ -8,7 +8,7 @@ import saveIcon from "../../assets/saveicon (2).png"
 import bookInfoIcon from "../../assets/open-book.png"
 import moreInfoIcon from "../../assets/document.png"
 import bookCoverIcon from "../../assets/bookcover.png"
-import axios from "axios";
+import { axiosWithAuthHeader } from "../../axiosInstance/withHeader"; 
 import { BASE_URL } from "../../configs/Urls";
 // import publicationinfo from "../assets/publication.png"
 
@@ -89,7 +89,7 @@ export default function EditBookPage() {
     useEffect(() => {
         async function fetchAllBookDetails() {
             try{
-                const response=await axios.get(`${BASE_URL}/book/${bkid}`)
+                const response=await axiosWithAuthHeader.get(`${BASE_URL}/book/${bkid}`)
                 if (response.statusText==="OK" && response.data){
                     setBook(response.data)
                     setOldDetails(response.data)
@@ -100,6 +100,7 @@ export default function EditBookPage() {
                 console.log(response)
             }catch(err){
                 console.log(err);
+                toast.error(err.response.data)
             }
         }
         fetchAllBookDetails()
@@ -153,7 +154,7 @@ export default function EditBookPage() {
                     formData.append("filename",filename)
                 }
                 console.log(formData)
-                const response=await axios.put(`${BASE_URL}/book/${bkid}`,formData,)
+                const response=await axiosWithAuthHeader.put(`${BASE_URL}/book/${bkid}`,formData,)
                 console.log(response)
                 toast.success("Book details saved successfully!",{autoClose:800,});
             }
@@ -164,8 +165,8 @@ export default function EditBookPage() {
             }
         }
         catch(err){
-            toast.error("Update Failed !")
             console.log(err)
+                toast.error(err.response.data)
         }
     };
 

@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import "./NewBook.css"
 import ImageUpload from "../MiscComponents/ImageUpload";
 import { BASE_URL } from "../../configs/Urls"
-import axios from "axios"
+import { axiosWithAuthHeader } from "../../axiosInstance/withHeader";
 import { useNavigate } from "react-router-dom"
 import { Slide, toast, ToastContainer } from "react-toastify";
 
@@ -20,9 +20,9 @@ export default function NewBook() {
             name:bookTitle.current.value,
             Author:bookAuthor.current.value,
             Publication:bookPublication.current.value,
-            Summary:bookIsbn.current.value,
+            Isbn:bookIsbn.current.value,
             Price:parseInt(bookPrice.current.value),
-            Isbn:bookSummary.current.value,
+            Summary:bookSummary.current.value,
         }
         formData.append("documentj",JSON.stringify(Jobj))
         console.log(Jobj)
@@ -30,7 +30,7 @@ export default function NewBook() {
         formData.append("file",imageFile.current.files[0])
         try{
 
-            const response=await axios.post(`${BASE_URL}/book/`,formData, {
+            const response=await axiosWithAuthHeader.post(`${BASE_URL}/book/`,formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             })
             console.log(response)
@@ -51,11 +51,8 @@ export default function NewBook() {
             }
         }
         catch(err){
-            toast.error('Failed',{
-                position:"top-center",
-                theme:"colored"
-            })
-            console.log(err)
+            console.log(err.response.data)
+                toast.error(err.response.data)
             throw new Error(""+err)
         }
 

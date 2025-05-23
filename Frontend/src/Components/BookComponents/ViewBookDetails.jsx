@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { toast } from "react-toastify"
 import "./ViewBookDetails.css"
 import { BASE_URL } from "../../configs/Urls"
-import axios from "axios"
+import { axiosWithAuthHeader } from "../../axiosInstance/withHeader"
 import editIcon from "../../assets/edit-icon.png" 
 import deleteIcon from "../../assets/bin-icon.png" 
 import DeletePopup from "../MiscComponents/DeletePopup"
@@ -17,13 +17,13 @@ export default function ViewBookDetails(){
     useEffect(()=>{
         const fetchDetails=async () => {
             try {
-                const response =await axios.get(`${BASE_URL}/book/${id}`)
+                const response =await axiosWithAuthHeader.get(`${BASE_URL}/book/${id}`)
                 if(response.data)
                 setBookDetails(response.data)
             console.log(response)
             } catch (error) {
-                console.log(error)
-                toast.error("Could not fetch data")
+                console.log(error.response.data)
+                toast.error(error.response.data)
             }
         }
         fetchDetails()
@@ -32,7 +32,7 @@ export default function ViewBookDetails(){
 
     const handleDeleteClick=async()=>{
         try {
-            const response =await axios.delete(`${BASE_URL}/book/${id}`)
+            const response =await axiosWithAuthHeader.delete(`${BASE_URL}/book/${id}`)
             toast.success("Deleted")
             console.log(response)
         } catch (error) {
