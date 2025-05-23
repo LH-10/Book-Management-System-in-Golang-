@@ -10,13 +10,13 @@ import(
 type User struct {
 	gorm.Model
 	Name string `gorm:""json:"name"`
-	Email string `json:"email"`
+	Email string `gorm:"unique" json:"email"`
 	Storename string `gorm:"unique" json:"storename"`
 	Password string `json:"password"`
 }
 
 func init(){
-	//db is accessible from book.go
+	//db variable is accessible from book.go
 	db.AutoMigrate(&User{})
 }
 
@@ -24,8 +24,14 @@ func (usr *User) AddNewUser(){
 	db.NewRecord(usr)
 	db.Create(usr)
 }
-func (usr *User) GetByEmail()(string){
+func (usr *User) GetPasswordByEmail()(string){
 	getUser:=&User{}
 	db.Where("email=?",usr.Email).Find(getUser)
 	return getUser.Password
 }
+func GetUserColumns(email string,columnlist []string,customStruct *User){
+	_=db.Table("users").Select(columnlist).Where("email=?",email).Scan(&customStruct)
+}
+// func GetUser(usremail string)(user){
+
+// }

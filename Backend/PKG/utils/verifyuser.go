@@ -9,7 +9,10 @@ import(
 )
 func VerifyUser(r *http.Request)(string,error){
 	authHeader:=r.Header.Get("Authorization")
+	fmt.Println(authHeader)
 	jwtToken:=strings.Replace(authHeader,"Bearer ","",1)
+	//for testing disabling jwt verify
+	// return "user@user1.com",nil
 
 	token,err:=jwt.Parse(jwtToken,func(token *jwt.Token)(interface{},error){
 		return []byte(os.Getenv("JWT_Secret")),nil

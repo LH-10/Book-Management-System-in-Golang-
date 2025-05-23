@@ -52,9 +52,9 @@ func (bk *Book) CreateBook() (*Book){
  return bk
 }
 
-func GetAllBooks() ([]Book){
+func GetAllBooks(storename string) ([]Book){
 	var allbooks []Book
-	db.Find(&allbooks)
+	db.Where("storename=?",storename).Find(&allbooks)
 	return allbooks
 }
 

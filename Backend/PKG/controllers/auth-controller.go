@@ -8,7 +8,7 @@ import(
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/LH-10/Book-Management-System-in-Golang-/PKG/models"
 	"github.com/LH-10/Book-Management-System-in-Golang-/PKG/utils"
-	"encoding/json"
+	_"encoding/json"
 	_"strings"
 )
 
@@ -16,7 +16,7 @@ func LoginHandler(w http.ResponseWriter,r *http.Request){
 	loginUser:=&models.User{}
 	utils.ParseBody(r,loginUser)
 	fmt.Println(loginUser)
-	dbHash:=loginUser.GetByEmail()
+	dbHash:=loginUser.GetPasswordByEmail()
 	passwordMatch,err:=utils.ComparePasswordAndHash(loginUser.Password,dbHash)
 
 	if err!=nil{
@@ -43,19 +43,8 @@ func LoginHandler(w http.ResponseWriter,r *http.Request){
 		"result": "success",
 		"jwtToken": tokenString,
 	}
-	jsonResponse,err:=json.Marshal(response)
-	if err!=nil{
-	http.Error(w, "Error Occured during parsing", http.StatusInternalServerError)
-
-	}
-	w.Header().Set("Content-Type", "application/json")
-
-	_, err = w.Write(jsonResponse)
-	if err != nil {
-		http.Error(w, "Error Occured during parsing", http.StatusInternalServerError)
-		return
-	}	
-		 
+	utils.MakeResponseJson(&w,response,true)	
+	return
 }
 func SignupHandler(w http.ResponseWriter,r *http.Request){
 	newUser:=&models.User{}

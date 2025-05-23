@@ -17,9 +17,20 @@ import(
 )
 	 var data models.Book
 	func CreateBook(w http.ResponseWriter, r *http.Request){
-		 Book1 :=&models.Book{}
-		// utils.ParseBody(r,Book1)
-		err := r.ParseMultipartForm(10 << 20)
+		Book1 :=&models.Book{}
+		useremail,err:=utils.VerifyUser(r)
+		log.Println(useremail)
+		if err!=nil{
+			log.Println(err,err.Error())
+			utils.MakeResponseJson(&w,map[string]interface{}{
+				"error":"You are not logged in!", 
+			},
+			false)
+			return
+		}
+		newUser:=&models.User{}
+		models.GetUserColumns(useremail,[]string{"storename"} ,newUser)
+		err = r.ParseMultipartForm(10 << 20)
 		if err != nil {
 			fmt.Println(err)
 			w.WriteHeader(http.StatusInternalServerError)
@@ -43,9 +54,10 @@ import(
 			fmt.Fprintf(w,"error")
 			return
 		}
-		
+
 		imagefilepath=strings.Replace(imagefilepath,os.Getenv("Book_Images_Path"),os.Getenv("Book_Image_URL_For_Client"),1)
 		Book1.ImagePath=imagefilepath
+		Book1.Storename=newUser.Storename
 		res,_:=json.Marshal(Book1.CreateBook())
 		w.Header().Set("Content-Type","application/json")
 		w.WriteHeader(http.StatusOK)
@@ -63,7 +75,9 @@ import(
 			false)
 			return
 		}
-		allbooks:=models.GetAllBooks()
+		newUser:=&models.User{}
+		models.GetUserColumns(useremail,[]string{"storename"} ,newUser)
+		allbooks:=models.GetAllBooks(newUser.Storename)
 		res , _ :=json.Marshal(allbooks)
 		w.Header().Set("Content-type","application/json")
 		w.WriteHeader(http.StatusOK)
@@ -71,13 +85,35 @@ import(
 	}
 
 	func GetBookById(w http.ResponseWriter, r *http.Request){
+		useremail,err:=utils.VerifyUser(r)
+		log.Println(useremail)
+		if err!=nil{
+			log.Println(err,err.Error())
+			utils.MakeResponseJson(&w,map[string]interface{}{
+				"error":"You are not logged in!", 
+			},
+			false)
+			return
+		}
+		newUser:=&models.User{}
+		models.GetUserColumns(useremail,[]string{"storename"} ,newUser)
 		vars:=mux.Vars(r)
 		bookId:=vars["bookId"]
 		Id,err:=strconv.ParseInt(bookId,0,0)
 		if err !=nil{
 			fmt.Println("Error occured during conversion of string	")
+			utils.MakeResponseJson(&w,map[string]interface{}{
+				"error": "Error while reading data",
+			},false)
+			return
 		}
 		thatBook,_:=models.GetBookById(Id)
+		if thatBook.Storename != newUser.Storename{
+			utils.MakeResponseJson(&w,map[string]interface{}{
+				"error": "You are not allowed to access this",
+			},false)
+			return
+		}
 		res , _ :=json.Marshal(thatBook)
 		w.Header().Set("Content-type","application/json")
 		w.WriteHeader(http.StatusOK)
@@ -85,14 +121,38 @@ import(
 	}
 
 	func DeleteBook(w http.ResponseWriter,r *http.Request){
+		useremail,err:=utils.VerifyUser(r)
+		log.Println(useremail)
+		if err!=nil{
+			log.Println(err,err.Error())
+			utils.MakeResponseJson(&w,map[string]interface{}{
+				"error":"You are not logged in!", 
+			},
+			false)
+			return
+		}
+
 		vars:=mux.Vars(r)
 		bookId:=vars["bookId"]
 		Id,err:=strconv.ParseInt(bookId,0,0)
 		if err!=nil{
 			fmt.Println("Error occured while conversion")
 		}
-		
 		mybook :=models.Book{}
+		models.GetColumns(Id,[]string{"storename"},&mybook)
+		
+		newUser:=&models.User{}
+		models.GetUserColumns(useremail,[]string{"storename"} ,newUser)
+
+		if mybook.Storename!=newUser.Storename{
+			utils.MakeResponseJson(&w,map[string]interface{}{
+				"error":"You are not allowed to delete this !", 
+			},false)
+			return
+		}
+
+		thatBook:=models.DeleteBook(Id)
+
 		models.GetColumns(Id,[]string{"image_path"},&mybook)
 		fileToDelete:=strings.Replace(mybook.ImagePath,os.Getenv("Book_Image_URL_For_Client"),os.Getenv("Book_Images_Path"),1)
 		fmt.Println(fileToDelete)
@@ -101,7 +161,6 @@ import(
 		}else{
 			fmt.Println("Old File Deleted")
 		}
-		thatBook:=models.DeleteBook(Id)
 		res,_:=json.Marshal(thatBook)
 		w.Header().Set("Content-Type","application/json")
 		w.WriteHeader(http.StatusOK)
@@ -109,7 +168,35 @@ import(
 		
 	}
 	func UpdateBook(w http.ResponseWriter,r *http.Request){
-		err := r.ParseMultipartForm(10 << 20)
+
+		useremail,err:=utils.VerifyUser(r)
+		log.Println(useremail)
+		if err!=nil{
+			log.Println(err,err.Error())
+			utils.MakeResponseJson(&w,map[string]interface{}{
+				"error":"You are not logged in!", 
+			},
+			false)
+			return
+		}
+		vars:=mux.Vars(r)
+		bookId:=vars["bookId"]
+		Id,err:=strconv.ParseInt(bookId,0,0)
+
+		newUser:=&models.User{}
+		models.GetUserColumns(useremail,[]string{"storename"} ,newUser)
+		
+		mybook :=models.Book{}
+		models.GetColumns(Id,[]string{"storename"},&mybook)
+
+		if mybook.Storename!=newUser.Storename{
+			utils.MakeResponseJson(&w,map[string]interface{}{
+				"error":"You cannot Update this record", 
+			},false)
+			return
+		}
+
+		err = r.ParseMultipartForm(10 << 20)
 		if err != nil {
 			fmt.Println(err)
 			w.WriteHeader(http.StatusInternalServerError)
@@ -119,7 +206,6 @@ import(
 		}
 		Book1 :=&models.Book{}
 		// utils.ParseBody(r,Book1)
-		vars:=mux.Vars(r)
 		JsonDoc:=r.Form.Get("documentj")
 		if err:=json.Unmarshal([]byte(JsonDoc),&Book1);err!=nil{
 			log.Print(err)
@@ -127,8 +213,6 @@ import(
 			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
-		bookId:=vars["bookId"]
-		Id,err:=strconv.ParseInt(bookId,0,0)
 		if err!=nil{
 			fmt.Println("Error occured while conversion",Id)
 			w.WriteHeader(http.StatusBadRequest)
@@ -144,7 +228,6 @@ import(
 				fmt.Fprintf(w,"Error While Updating the Book Image")
 				return
 				} 
-			mybook :=models.Book{}
 			models.GetColumns(Id,[]string{"image_path"},&mybook)
 			fileToDelete:=strings.Replace(mybook.ImagePath,os.Getenv("Book_Image_URL_For_Client"),os.Getenv("Book_Images_Path"),1)
 			fmt.Println(fileToDelete)
