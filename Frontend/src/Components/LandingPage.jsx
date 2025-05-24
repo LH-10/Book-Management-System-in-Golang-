@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import './LandingPage.css';
 import { FaChartBar, FaClipboardList, FaPlus, FaRegEdit } from 'react-icons/fa';
  import {APP_NAME} from '../configs/Names.js'
-
+ import BookListing from "../assets/booklisting.png"
+ import UpdatesImage from "../assets/updates.png"
+import StockUpdates from "../assets/AddBook.png"
 const LandingPage = () => {
   return (
     <div className="landing-container">
@@ -75,20 +77,21 @@ const LandingPage = () => {
           <h2>Core Modules</h2>
           <div className="landing-categories-grid">
             <div className="landing-category-card">
-              <div className="landing-category-image landing-category-fiction">
+              <div className="landing-category-image ">
 
-                <img src="" />
+                <img src={BookListing} />
               </div>
               <h3>Book Listings</h3>
             </div>
             <div className="landing-category-card">
-              <div className="landing-category-image landing-category-nonfiction">
+              <div className="landing-category-image ">
+                <img src={StockUpdates} />
               </div>
               <h3>Stock Updates</h3>
             </div>
             <div className="landing-category-card">
-              <div className="landing-category-image landing-category-mystery">
-                <img src="" />
+              <div className="landing-category-image ">
+                <img src={UpdatesImage}  />
 
               </div>
               <h3>Record Edits</h3>

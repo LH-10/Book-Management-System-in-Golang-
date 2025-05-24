@@ -26,12 +26,14 @@
 
 .navcontainer .hero-logo
 {
-    width: 50%;
+  cursor: pointer;
+    width: 60%;
     font-size: 1.3rem;
     justify-self: flex-start;
     text-align: left;
     color: rgb(255, 255, 255);    
     margin: 0 20px; 
+    font-weight: 700;
 }
 
 
@@ -98,6 +100,7 @@
   text-decoration: none;
   color: white;
   padding: 11px 17px;
+  font-weight: 550;
   transition: all 0.3s ease;
 }
 .navcontainer  ul li a:hover{
@@ -183,23 +186,29 @@
     margin-bottom: 3px;
   }
 
-  .dropdown-menu {
+  .mobile-only .nav-item .dropdown-menu {
     position: absolute;
     bottom: 60px;
     background: white;
     color: black;
+    
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 7px 10px;
   }
 
-  .dropdown-menu a {
-    display: block;
-    padding: 5px 0;
+  .nav-item .dropdown-menu a {
+    display: flex;
+    padding: 5px 8px;
     text-decoration: none;
+    background: rgb(248, 247, 247);
     color: black;
+    justify-content: center;
+    align-items: center;
+    gap:6px
   }
-
-  .dropdown-menu a:hover {
+  
+  .nav-item .dropdown-menu a:hover {
+ 
     background-color: #eee;
   }
 }

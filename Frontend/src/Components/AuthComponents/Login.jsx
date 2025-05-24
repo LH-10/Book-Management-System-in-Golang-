@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaArrowCircleLeft, FaArrowLeft, FaEnvelope, FaLock } from 'react-icons/fa';
 import './Login.css';
 import { BASE_URL } from '../../configs/Urls';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
   const navigate=useNavigate()
@@ -33,7 +34,8 @@ const Login = () => {
       localStorage.setItem("jwtToken",response.data.jwtToken)
       localStorage.setItem("username",response.data.username)
       localStorage.setItem("storename",response.data.storename)
-      navigate('/home/dashboard')
+      toast.success("Login Success",{autoClose:1000,position:"top-center",onClose:(()=>{navigate('/home/dashboard')})})
+      
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');
     } finally {
@@ -103,6 +105,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    <ToastContainer theme='light' />
                   </>
   );
 };

@@ -78,7 +78,7 @@ export default function NewBook() {
                 </div>
                 <div className="book-details-input">
                     <label htmlFor="">Title</label>
-                    <input type="text" ref={bookTitle} placeholder="Enter book title" id="title" required pattern="^[a-zA-Z0-9\s]+$" />
+                    <input type="text" ref={bookTitle} placeholder="Enter book title" id="title" required pattern="^[a-zA-Z0-9\s:]+$" />
 
                     <label htmlFor="">Author</label>
                     <input type="text" ref={bookAuthor} placeholder="Enter author's name" id="author" required pattern="^[a-zA-Z\s.]+$" />

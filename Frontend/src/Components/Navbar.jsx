@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './Navbar.css'
-import { FaHome, FaInfoCircle, FaBars, FaUserCircle, FaAngleDown , FaSignOutAlt, FaAngleUp} from "react-icons/fa";
-import { toast } from "react-toastify";
+import { FaHome, FaInfoCircle, FaBars, FaUserCircle, FaAngleDown , FaSignOutAlt, FaAngleUp, FaUserAlt} from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Navbar() {
 
@@ -14,7 +14,7 @@ export default function Navbar() {
     const handleLogout=()=>{
         try {
             localStorage.clear()
-            toast.success("Logout Successfull !",{theme:"light",onClose:(()=>{navigate("/landing")})})
+            toast.success("Logout Successfull !",{theme:"light",autoClose:1000,onClose:(()=>{navigate("/landing")})})
         } catch (error) {
             toast.error("Could not logout")
         }
@@ -23,11 +23,11 @@ export default function Navbar() {
         <>
             <nav className="book-nav desktop-only">
                 <div className="navcontainer">
-                    <div className="hero-logo">
+                    <div className="hero-logo" onClick={()=>{navigate("/home/dashboard")}}>
                         BookStore Management
                     </div>
                     <ul>
-                        <li><Link>Home</Link> </li>
+                        <li><Link to="/home/dashboard"  >Home</Link> </li>
                         <li><Link>About</Link> </li>
                         <li><Link>Contact</Link></li>
                     </ul>
@@ -52,7 +52,7 @@ export default function Navbar() {
 
             </div>
             <div className="mobile-book-nav mobile-only">
-                <Link to="/" className="nav-item">
+                <Link to="/home/dashboard" className="nav-item">
                     <FaHome />
                     <span>Home</span>
                 </Link>
@@ -72,8 +72,8 @@ export default function Navbar() {
                     <span>Account</span>
                     {showDropdown && (
                         <div className="dropdown-menu">
-                            <Link to="/profile">Profile</Link>
-                            <Link to="/logout">Logout</Link>
+                            <Link><FaUserAlt size={12}/>{username || "...." }</Link>
+                            <Link onClick={handleLogout}> <FaSignOutAlt size={15}/> Logout</Link>
                         </div>
                     )}
                 </div>

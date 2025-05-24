@@ -52,14 +52,13 @@ const BooksDisplay = () => {
                 </div>
                 <div className="titlesection" style={{cursor:"pointer"}} onClick={handleCardClick}>
                     <img src={`${BASE_URL}/${book.image}`} alt=""  />
-                   <h3>
-                    {book.title}
-                    </h3> 
                 </div>
                 <div className="bookinfo" onClick={handleCardClick}>
+                   <h4>
+                    {book.title}
+                    </h4> 
                     <ul>
-                        <li>{book.author}</li>
-                        <li>{book.publication}</li>
+                        <li>{"~"+book.author}</li>
                     </ul>
                 </div>
 
