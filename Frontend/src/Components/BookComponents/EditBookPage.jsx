@@ -156,7 +156,7 @@ export default function EditBookPage() {
                 console.log(formData)
                 const response=await axiosWithAuthHeader.put(`${BASE_URL}/book/${bkid}`,formData,)
                 console.log(response)
-                toast.success("Book details saved successfully!",{autoClose:800,});
+                toast.success("Book details saved successfully!",{autoClose:800,onClose:()=>setChangesMade(changesMade+1)});
             }
             else{
                 console.log("No changes Detected !")

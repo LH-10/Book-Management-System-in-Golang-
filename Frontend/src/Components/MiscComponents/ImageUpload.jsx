@@ -87,7 +87,7 @@ export default function ImageUpload({ fileRef, textToDisplay, onFileSelect ,exte
     <>
       <div className={`fileupload-container-copy ${isDragging ? "dragging" :""}`} style={externalStyles}>
 
-        { selectedImage &&(    <div className="remove-img" onClick={handleFileRemove}></div>)}
+        { selectedImage &&(    <div className="remove-img" onClick={handleFileRemove}> <img src={DeleteIcon} height="15px" width="15px" /></div>)}
         <label
           htmlFor="book-image-file"
           className={`fileupload-container `}

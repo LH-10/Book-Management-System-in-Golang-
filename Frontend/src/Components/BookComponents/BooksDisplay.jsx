@@ -82,6 +82,7 @@ const BooksDisplay = () => {
                     console.log(resp.data)
                 }
                 else{
+                    setAllBooks(resp.data)
                     console.log("problem while fetching")
                 }
             }

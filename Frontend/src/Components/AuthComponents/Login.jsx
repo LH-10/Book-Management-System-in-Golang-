@@ -34,7 +34,7 @@ const Login = () => {
       localStorage.setItem("jwtToken",response.data.jwtToken)
       localStorage.setItem("username",response.data.username)
       localStorage.setItem("storename",response.data.storename)
-      toast.success("Login Success",{autoClose:1000,position:"top-center",onClose:(()=>{navigate('/home/dashboard')})})
+      toast.success("Login Success",{autoClose:1500,position:"top-center",onClose:(()=>{navigate('/home/dashboard')})})
       
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');

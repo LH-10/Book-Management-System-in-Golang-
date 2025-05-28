@@ -173,7 +173,13 @@
     }
     .bookcard .card-options{
         visibility: visible;
+        gap: 10px;
     }
+    .card-options div{
+        width: 30px;
+        height: 30px;
+    }
+
 }
 @media screen and (max-width:758px) {
     .booksContainer{
