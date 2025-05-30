@@ -22,10 +22,9 @@ import(
 		log.Println(useremail)
 		if err!=nil{
 			log.Println(err,err.Error())
-			utils.MakeResponseJson(&w,map[string]interface{}{
-				"error":"You are not logged in!", 
-			},
-			false)
+		
+				http.Error(w,"You are not logged in!",http.StatusBadRequest)
+
 			return
 		}
 		newUser:=&models.User{}
@@ -69,10 +68,8 @@ import(
 		log.Println(useremail)
 		if err!=nil{
 			log.Println(err,err.Error())
-			utils.MakeResponseJson(&w,map[string]interface{}{
-				"error":"You are not logged in!", 
-			},
-			false)
+			http.Error(w,"You are not logged in!",http.StatusBadRequest)
+
 			return
 		}
 		newUser:=&models.User{}
@@ -89,10 +86,8 @@ import(
 		log.Println(useremail)
 		if err!=nil{
 			log.Println(err,err.Error())
-			utils.MakeResponseJson(&w,map[string]interface{}{
-				"error":"You are not logged in!", 
-			},
-			false)
+			http.Error(w,"You are not logged in!",http.StatusBadRequest)
+			
 			return
 		}
 		newUser:=&models.User{}
@@ -102,16 +97,14 @@ import(
 		Id,err:=strconv.ParseInt(bookId,0,0)
 		if err !=nil{
 			fmt.Println("Error occured during conversion of string	")
-			utils.MakeResponseJson(&w,map[string]interface{}{
-				"error": "Error while reading data",
-			},false)
+			http.Error(w,"Error while reading data",http.StatusBadRequest)
+
 			return
 		}
 		thatBook,_:=models.GetBookById(Id)
 		if thatBook.Storename != newUser.Storename{
-			utils.MakeResponseJson(&w,map[string]interface{}{
-				"error": "You are not allowed to access this",
-			},false)
+			http.Error(w, "You are not allowed to access this",http.StatusBadRequest)
+
 			return
 		}
 		res , _ :=json.Marshal(thatBook)
@@ -125,10 +118,9 @@ import(
 		log.Println(useremail)
 		if err!=nil{
 			log.Println(err,err.Error())
-			utils.MakeResponseJson(&w,map[string]interface{}{
-				"error":"You are not logged in!", 
-			},
-			false)
+			http.Error(w,"You are not logged in!",http.StatusBadRequest)
+
+			
 			return
 		}
 
@@ -145,9 +137,9 @@ import(
 		models.GetUserColumns(useremail,[]string{"storename"} ,newUser)
 
 		if mybook.Storename!=newUser.Storename{
-			utils.MakeResponseJson(&w,map[string]interface{}{
-				"error":"You are not allowed to delete this !", 
-			},false)
+				http.Error(w,"You are not allowed to delete this !",http.StatusBadRequest)
+
+			
 			return
 		}
 
@@ -173,10 +165,9 @@ import(
 		log.Println(useremail)
 		if err!=nil{
 			log.Println(err,err.Error())
-			utils.MakeResponseJson(&w,map[string]interface{}{
-				"error":"You are not logged in!", 
-			},
-			false)
+					http.Error(w,"You are not logged in!",http.StatusBadRequest)
+ 
+			
 			return
 		}
 		vars:=mux.Vars(r)
@@ -190,9 +181,8 @@ import(
 		models.GetColumns(Id,[]string{"storename"},&mybook)
 
 		if mybook.Storename!=newUser.Storename{
-			utils.MakeResponseJson(&w,map[string]interface{}{
-				"error":"You cannot Update this record", 
-			},false)
+		http.Error(w,"You cannot Update this record",http.StatusBadRequest)
+
 			return
 		}
 

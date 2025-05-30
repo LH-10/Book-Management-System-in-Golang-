@@ -20,7 +20,7 @@ func LoginHandler(w http.ResponseWriter,r *http.Request){
 	passwordMatch,err:=utils.ComparePasswordAndHash(loginUser.Password,dbHash)
 
 	if err!=nil{
-		log.Print(err)
+		http.Error(w,"Incorrect Username or Password",http.StatusBadRequest)
 		return
 	}
 	if !passwordMatch{
@@ -46,7 +46,7 @@ func LoginHandler(w http.ResponseWriter,r *http.Request){
 		"username":loginUser.Name,
 		"storename":loginUser.Storename,
 	}
-	utils.MakeResponseJson(&w,response,true)	
+	utils.MakeResponseJson(&w,response)	
 	return
 }
 func SignupHandler(w http.ResponseWriter,r *http.Request){
@@ -58,9 +58,8 @@ func SignupHandler(w http.ResponseWriter,r *http.Request){
 
 	if err!=nil{
 		log.Println("error occured",err)
-		utils.MakeResponseJson(&w,map[string]interface{}{
-			"error":"error occured while registering", 
-		},false)
+		http.Error(w,"error occured while registering",http.StatusBadRequest)
+
 		return
 	}
 	
@@ -75,16 +74,15 @@ func SignupHandler(w http.ResponseWriter,r *http.Request){
 		default:
 			errString="Could not register user"
 		}
-		utils.MakeResponseJson(&w,map[string]interface{}{
-			"error":errString, 
-		},false)
+		http.Error(w,errString,http.StatusBadRequest)
+
 		
 		return
 	}
 	utils.MakeResponseJson(&w,map[string]interface{}{
 		"result": "success",
 		"user":newUser.Name,
-	},true)
+	})
 	return 
 }
 

@@ -5,10 +5,17 @@ import(
 	"errors"
 	"os"
 	"github.com/joho/godotenv"
-
 	"github.com/jinzhu/gorm"
+	"log"
 	_"github.com/jinzhu/gorm/dialects/mysql"
 )
+
+func init(){
+	err:=godotenv.Load()
+	if err!=nil{
+		log.Fatal(err)
+	}
+}
 
 var  ( db *gorm.DB
 )
@@ -26,11 +33,8 @@ func GetDb() *gorm.DB{
 }
 
 func userString() string {
-	err:= godotenv.Load()
 
-	if err!=nil{
-		fmt.Println(err)
-	}
+	
 	// var username,pass,credString,databaseName string
 	// fmt.Printf("Enter mysql username:")
 	// fmt.Scan(&username)

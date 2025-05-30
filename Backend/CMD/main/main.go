@@ -13,13 +13,15 @@ import(
 	// "fmt"
 )
 
-func main(){
-
-	err:= godotenv.Load()
-
+func init(){
+	err:=godotenv.Load()
 	if err!=nil{
 		log.Fatal(err)
 	}
+}
+
+func main(){
+
 	r:=mux.NewRouter()
 	routers.RegisterBookStoreRoutes(r)
 	routers.RegisterAuthRoutes(r)

@@ -24,9 +24,11 @@ type Book struct{
 	ImagePath string  `json:"imagepath"`
 	Summary string	`json:"summary"`
 	Price int64 `json:"price"`
+	Stock uint32 `json:"stock"`
 	Isbn string `json:"isbn"`
 	Storename string 
 	User User `gorm:"foreignKey:Storename , references:Storename"`
+	
 	//`gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE,references:Storename;"`
 }
 

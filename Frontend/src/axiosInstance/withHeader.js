@@ -4,7 +4,7 @@ let jwtToken=localStorage.getItem("jwtToken")?localStorage.getItem("jwtToken"):n
 
 const axiosWithAuthHeader=axios.create({
     headers:{
-        Authorization:`Bearer ${localStorage.getItem("jwtToken")}`
+        Authorization:`Bearer ${jwtToken}`
     }
 })
 export {axiosWithAuthHeader}
