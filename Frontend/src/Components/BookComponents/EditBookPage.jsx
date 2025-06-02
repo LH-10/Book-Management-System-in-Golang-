@@ -244,7 +244,6 @@ export default function EditBookPage() {
                                         setBook={setBook}
                                         value={book.author}
                                         fieldIcon="user"
-                                        divType="full-width"
                                         required={true}
                                     />
 
@@ -257,6 +256,13 @@ export default function EditBookPage() {
                                     />
 
                                     
+                                    <LabeledInput
+                                        labelText="Stock"
+                                        name="stock"
+                                        setBook={setBook}
+                                        value={book.stock}
+                                        required={true}
+                                    />
 
                                     <LabeledInput
                                         labelText="Genre"

@@ -25,6 +25,7 @@ type Book struct{
 	Summary string	`json:"summary"`
 	Price int64 `json:"price"`
 	Stock uint32 `json:"stock"`
+	Genre string `json:"genre"`
 	Isbn string `json:"isbn"`
 	Storename string 
 	User User `gorm:"foreignKey:Storename , references:Storename"`

@@ -8,6 +8,10 @@ import editIcon from "../../assets/edit-icon.png"
 import deleteIcon from "../../assets/bin-icon.png" 
 import DeletePopup from "../MiscComponents/DeletePopup"
 import { FaUser, FaBook, FaBarcode, FaTag, FaFileAlt } from 'react-icons/fa';
+import { MdInventory } from "react-icons/md";
+import { BiCategory } from "react-icons/bi";
+
+
 
 export default function ViewBookDetails(){
     const {id}=useParams()
@@ -73,9 +77,9 @@ export default function ViewBookDetails(){
     </div>
     <div className="info-row">
         <div className="info-item">
-            <strong><FaBarcode /> ISBN</strong>
+            <strong><MdInventory     /> Stock</strong>
             <br />
-            {bookDetails.isbn}
+            {bookDetails.stock}
         </div>
         <div className="info-item">
             <strong><FaTag /> Price</strong>
@@ -83,6 +87,18 @@ export default function ViewBookDetails(){
             ₹{bookDetails.price}
         </div>
     </div>
+    <div className="info-row">
+    <div className="info-item">
+            <strong><FaBarcode /> ISBN</strong>
+            <br />
+            {bookDetails.isbn}
+        </div>
+   <div className="info-item">
+            <strong><BiCategory /> Genre</strong>
+            <br />
+            {bookDetails.genre}
+        </div>
+        </div>
     <div className="summary">
         <strong><FaFileAlt /> Summary</strong>
         <br />

@@ -165,7 +165,7 @@
     position:fixed;
     bottom: 0;
     width: 100%;
-    background:  linear-gradient(to bottom  ,#fe7d3c, #fd6c23);
+    background:  linear-gradient(to bottom  ,#fe7d3cf6, #fd6c23f5);
     justify-content: space-around;
     padding: 10px 0;
     color: white;
