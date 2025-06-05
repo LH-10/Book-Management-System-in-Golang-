@@ -1,185 +1,160 @@
 
 
-# 📚 Book Management System in Golang
+# 📚 Book Management System – Full Stack (Go + React)
 
-This is a backend-only **Book Management System** built using **Golang**. It provides a REST API to manage books, including functionalities for adding, updating, retrieving, and deleting book records. The project uses **GORM** for database operations and **Gorilla Mux** for routing.
+This is a **full-stack Book Management System** built with **Golang** for the backend and **React (Vite)** for the frontend. The application offers a responsive user interface and robust backend functionalities, including secure user authentication, book management, and seamless API integration.
 
 ---
 
 ## 🚀 Features
 
-- Add a new book 📖
-- Retrieve all books 📚
-- Retrieve a book by its ID 🔍
-- Update book details ✏️
-- Delete a book 🗑️
+### 🔐 User Authentication
+
+* Secure signup and login using **Argon2id** password hashing and **JWT** for session management.
+* Environment variables managed via `.env` files for enhanced security.
+
+### 📖 Book Management
+
+* **CRUD Operations**: Add, view, update, and delete books.
+* Retrieve books by ID or list all available books.
+
+### 🌐 Frontend
+
+* Built with **React** and **Vite** for fast performance.
+* Fully **responsive design** compatible with desktops, tablets, and mobile devices.
 
 ---
 
 ## 🛠️ Technologies Used
 
-- **Golang** (Backend)
-- **GORM** (ORM for MySQL)
-- **Gorilla Mux** (Router)
-- **MySQL** (Database)
-- **Postman** (For API testing)
+* **Backend**: Golang, GORM (ORM), Gorilla Mux (Router), MySQL
+* **Frontend**: React, Vite, Axios, Tailwind CSS
+* **Authentication**: Argon2id (password hashing), JWT (token-based authentication)
+* **Testing**: Postman
 
 ---
 
 ## 🔧 Setup and Installation
 
-### 1️⃣ Install Go
-Make sure you have **Golang** installed on your system. If not, download it from [here](https://go.dev/dl/).
+### 1️⃣ Clone the Repository
 
-### 2️⃣ Install Dependencies
-Run the following command to install necessary Go packages:
-
-```sh
-go get -u gorm.io/gorm
-go get -u gorm.io/driver/mysql
-go get -u github.com/gorilla/mux
+```bash
+git clone https://github.com/yourusername/book-management-system.git
+cd book-management-system
 ```
 
-### 3️⃣ Set Up MySQL Database
-Ensure that **MySQL** is installed and running on your system. Create a database:
+### 2️⃣ Backend Setup
 
-```sql
-CREATE DATABASE book_management;
+* Navigate to the backend directory:
+
+
+```bash
+cd backend
 ```
 
-### 4️⃣ Run the Application
-Run the **executable file**:
+#### 🔑 Create a `.env` file and add your configuration:
 
-```sh
-./main.exe
+```env
+# Path where book images are stored on the server
+BOOK_IMAGES_PATH=./images
+
+# URL used by the frontend to access book images
+BOOK_IMAGE_URL_FOR_CLIENT=http://localhost:8000/images
+
+# JWT secret key for authentication
+JWT_SECRET=your_jwt_secret_key
+
+# Database configuration
+DATABASE_NAME=book_management
+SQL_USER=root
+SQL_PASSWORD=your_password
+
+
+
+#### 📦 Install Go dependencies
+
+```bash
+go mod tidy
 ```
 
-It will prompt for **MySQL username** and **password**.
+#### ▶️ Run the backend
+
+```bash
+go run CMD/main/main.go
+```
+
+
+### 3️⃣ Frontend Setup
+
+* Navigate to the frontend directory:
+
+  ```bash
+  cd ../frontend
+  ```
+
+* Install dependencies:
+
+  ```bash
+  npm install
+  ```
+
+
+  ...
+* Run the application:
+
+  ```bash
+  npm run dev
+  ```
 
 ---
 
 ## 📡 API Endpoints
 
-###  **➕ Create a New Book (POST)**
-- **URL:** `POST http://localhost:8000/book/`
-- **Headers:**
-  ```
-  Content-Type: application/json
-  ```
-- **Body (JSON):**
-  ```json
-  {
-      "name": "The Great Gatsby",
-      "Author": "F. Scott Fitzgerald",
-      "Publication": "1925"
-  }
-  ```
-- **Expected Response:**
-  ```json
-  {
-      "id": 1,
-      "name": "The Great Gatsby",
-      "Author": "F. Scott Fitzgerald",
-      "Publication": "1925"
-  }
-  ```
+### 🔐 Authentication
 
----
+* **Signup**: `POST /signup`
+* **Login**: `POST /login`
 
-### **📚 Get All Books (GET)**
-- **URL:** `GET http://localhost:8000/book/`
-- **Expected Response (Example):**
-  ```json
-  [
-      {
-          "id": 1,
-          "name": "The Great Gatsby",
-          "Author": "F. Scott Fitzgerald",
-          "Publication": "1925"
-      },
-      {
-          "id": 2,
-          "name": "To Kill a Mockingbird",
-          "Author": "Harper Lee",
-          "Publication": "1960"
-      }
-  ]
-  ```
+### 📖 Book Management
 
----
-
-### **🔍 Get a Book by ID (GET)**
-- **URL:** `GET http://localhost:8000/book/1`
-- **Expected Response:**
-  ```json
-  {
-      "id": 1,
-      "name": "The Great Gatsby",
-      "Author": "F. Scott Fitzgerald",
-      "Publication": "1925"
-  }
-  ```
-
----
-
-### **✏️ Update a Book (PUT)**
-- **URL:** `PUT http://localhost:8000/book/1`
-- **Headers:**
-  ```
-  Content-Type: application/json
-  ```
-- **Body (JSON):**
-  ```json
-  {
-      "name": "The Great Gatsby (Updated)",
-      "Author": "F. Scott Fitzgerald",
-      "Publication": "1926"
-  }
-  ```
-- **Expected Response:**
-  ```json
-  {
-      "id": 1,
-      "name": "The Great Gatsby (Updated)",
-      "Author": "F. Scott Fitzgerald",
-      "Publication": "1926"
-  }
-  ```
-
----
-
-### **🗑️ Delete a Book (DELETE)**
-- **URL:** `DELETE http://localhost:8000/book/1`
-- **Expected Response:**
-  ```json
-  {
-      "message": "Book deleted successfully"
-  }
-  ```
-
+* **Create Book**: `POST /book/`
+* **Get All Books**: `GET /book/`
+* **Get Book by ID**: `GET /book/{id}`
+* **Update Book**: `PUT /book/{id}`
+* **Delete Book**: `DELETE /book/{id}`
 
 ---
 
 ## 🏗️ Project Structure
 
 ```
-Book-Management-System-in-Golang/
-│── main.go              # Entry point of the application
-│── models/              # Database models
-│── routes/              # API route handlers
-│── controllers/         # Logic for handling requests
-│── config/              # Database connection setup
-│── README.md            # Documentation (this file)
+book-management-system/
+├── backend/
+│   ├── CMD/
+│   │   └── main/
+│   │       └── main.go          # Entry point for the Go backend server
+│   ├── config/                  # Handles configuration like DB and env loading
+│   ├── controllers/             # Business logic for API endpoints
+│   ├── models/                  # Database models and structs
+│   ├── routes/                  # API route definitions
+│   └── .env                     # Environment variables for backend
+│
+├── frontend/
+│   ├── public/                  # Static assets like index.html
+│   ├── src/                     # React source code (components, pages, etc.)
+│
+└── README.md                    # Project documentation
 ```
 
 ---
 
-## 🤝 Contribution
 
-Feel free to fork this repository, make changes, and create a pull request! 🚀
 
----
+
 
 ## 📜 License
 
-This project is **MIT Licensed**. You can use and modify it as per your needs.
+This project is licensed under the **MIT License**.
+
+---
+
