@@ -34,7 +34,7 @@ const Login = () => {
       localStorage.setItem("jwtToken",response.data.jwtToken)
       localStorage.setItem("username",response.data.username)
       localStorage.setItem("storename",response.data.storename)
-      toast.success("Login Success",{autoClose:1500,position:"top-center",onClose:(()=>{navigate('/home/dashboard')})})
+      toast.success("Login Success",{autoClose:1500,position:"top-center",onClose:(()=>{window.location.href=('/home/dashboard')})})
       
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');
@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <>
     <div className="login-page">
-     <span style={{margin:"30px 20px",height:"70px",width:"70px"}} onClick={()=>{navigate('/landing')}} ><FaArrowCircleLeft color='Orange' size={36} /></span>
+     <span style={{margin:"30px 20px",height:"70px",width:"70px"}} onClick={()=>{navigate('/')}} ><FaArrowCircleLeft color='Orange' size={36} /></span>
       
       <div className="login-right-panel">
         <div className="login-form-wrapper">
@@ -77,7 +77,7 @@ const Login = () => {
             <div className="login-form-group">
               <div className="login-label-row">
                 <label htmlFor="password">Password</label>
-                <a href="/forgot-password" className="login-forgot-link">Forgot Password?</a>
+                <Link to="/forgot-password" className="login-forgot-link">Forgot Password?</Link>
               </div>
               <div className="login-input-container">
                 <input

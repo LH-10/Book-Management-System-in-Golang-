@@ -44,7 +44,7 @@ const navigate=useNavigate()
 
   return (<>
     <div className="signup-page">
-     <span style={{margin:"30px 20px",height:"70px",width:"70px"}} onClick={()=>{navigate('/landing')}} ><FaArrowCircleLeft color='Orange' size={36} /></span>
+     <span style={{margin:"30px 20px",height:"70px",width:"70px"}} onClick={()=>{navigate('/')}} ><FaArrowCircleLeft color='Orange' size={36} /></span>
       
       <div className="signup-left-panel">
         <div className="signup-form-container">

@@ -1,10 +1,18 @@
 import axios from "axios"
 
-let jwtToken=localStorage.getItem("jwtToken")?localStorage.getItem("jwtToken"):null
+
+function checkForToken(){
+    if (localStorage.getItem("jwtToken")){
+        return `Bearer ${localStorage.getItem("jwtToken")}`
+    }
+    else {
+        return null
+    }
+}
 
 const axiosWithAuthHeader=axios.create({
     headers:{
-        Authorization:`Bearer ${jwtToken}`
+        Authorization:`Bearer ${localStorage.getItem("jwtToken")}`
     }
 })
 export {axiosWithAuthHeader}

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import './Navbar.css'
 import { FaHome, FaInfoCircle, FaBars, FaUserCircle, FaAngleDown , FaSignOutAlt, FaAngleUp, FaUserAlt} from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
+import { APP_NAME } from "../configs/Names";
 
 export default function Navbar() {
 
@@ -14,7 +15,7 @@ export default function Navbar() {
     const handleLogout=()=>{
         try {
             localStorage.clear()
-            toast.success("Logout Successfull !",{theme:"light",autoClose:1000,onClose:(()=>{navigate("/landing")})})
+            toast.success("Logout Successfull !",{theme:"light",autoClose:1000,onClose:(()=>{window.location.href="/"})})
         } catch (error) {
             toast.error("Could not logout")
         }
@@ -24,7 +25,7 @@ export default function Navbar() {
             <nav className="book-nav desktop-only">
                 <div className="navcontainer">
                     <div className="hero-logo" onClick={()=>{navigate("/home/dashboard")}}>
-                        BookStore Management
+                        {APP_NAME}
                     </div>
                     <ul>
                         <li><Link to="/home/dashboard"  >Home</Link> </li>
