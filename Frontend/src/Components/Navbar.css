@@ -167,7 +167,7 @@
     width: 100%;
     background:  linear-gradient(to bottom  ,#fe7d3cf6, #fd6c23f5);
     justify-content: space-around;
-    padding: 10px 0;
+    padding: 7px 0;
     color: white;
     z-index: 1000;
   }
@@ -176,14 +176,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 14px;
+    font-size: 12px;
     color: white;
     text-decoration: none;
   }
 
   .mobile-only .nav-item svg {
     font-size: 20px;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
   }
 
   .mobile-only .nav-item .dropdown-menu {
@@ -193,7 +193,7 @@
     color: black;
     
     border-radius: 5px;
-    padding: 7px 10px;
+    padding: 7px 8px;
   }
 
   .nav-item .dropdown-menu a {

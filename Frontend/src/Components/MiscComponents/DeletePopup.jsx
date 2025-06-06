@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
-import axios from "axios"
+import { axiosWithAuthHeader } from "../../axiosInstance/withHeader"
 import { toast, ToastContainer } from "react-toastify"
 import { BASE_URL } from "../../configs/Urls"
 import "./DeletePopup.css" 
@@ -37,7 +37,7 @@ export default function DeletePopup({ book , openstates}) {
   const handleDeleteClick = async () => {
     try {
       
-      await axios.delete(`${BASE_URL}/book/${book.id}`)
+      await axiosWithAuthHeader.delete(`${BASE_URL}/book/${book.id}`)
       toast.success("Book Record Deleted",{autoClose:1000,onClose:(()=>{window.location.assign("/home/dashboard")})})
       setIsOpen(false)
       
