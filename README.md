@@ -28,7 +28,7 @@ This is a **full-stack Book Management System** built with **Golang** for the ba
 ## 🛠️ Technologies Used
 
 * **Backend**: Golang, GORM (ORM), Gorilla Mux (Router), MySQL
-* **Frontend**: React, Vite, Axios, Tailwind CSS
+* **Frontend**: React, Vite, Axios
 * **Authentication**: Argon2id (password hashing), JWT (token-based authentication)
 * **Testing**: Postman
 
