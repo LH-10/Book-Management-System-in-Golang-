@@ -1,0 +1,21 @@
+services:
+  db:
+    container_name: mysql-book
+    image: docker.io/library/mysql:8.0
+    env_file:
+      - ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${SQL_Password}
+      - MYSQL_DATABASE=${Database_Name}
+
+  app:
+    build: .
+    container_name: golang-api
+    depends_on:
+      db:
+        condition: "service_completed_successfully"
+        restart: true
+    ports:
+      - 8000:8000
+    environment:
+      - Host_Name=mysql-book

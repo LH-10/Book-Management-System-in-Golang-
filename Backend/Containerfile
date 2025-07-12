@@ -1,0 +1,27 @@
+FROM alpine as build
+
+WORKDIR /usr/app/backend
+
+RUN wget https://golang.org/dl/go1.23.4.linux-amd64.tar.gz && tar -C /usr/local -xzf go1.23.4.linux-amd64.tar.gz
+
+ENV PATH $PATH:/usr/local/go/bin
+
+
+COPY go.mod go.sum ./
+
+RUN go mod download 
+
+COPY . .
+
+
+RUN go build -o ./CMD/main/main ./CMD/main
+
+
+EXPOSE 8000
+
+CMD ["./CMD/main/main"]
+
+
+#FROM alpine
+
+#COPY --from=build 

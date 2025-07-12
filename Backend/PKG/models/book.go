@@ -41,7 +41,6 @@ func init(){
 	}
 	db=config.GetDb()
 	db.AutoMigrate(&Book{})
-	db.AutoMigrate(&User{})
 
 	fmt.Println("Initializing database....")
 	go func (){

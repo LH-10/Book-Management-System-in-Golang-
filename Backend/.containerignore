@@ -1,0 +1,7 @@
+Containerfile
+
+.gitignore
+
+*.exe
+
+*.o
