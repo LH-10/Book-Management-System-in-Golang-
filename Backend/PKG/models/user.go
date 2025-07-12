@@ -16,8 +16,8 @@ type User struct {
 }
 
 func init(){
-	//db variable is accessible from book.go
 	db.AutoMigrate(&User{})
+	//db variable is accessible from book.go
 }
 
 func (usr *User) AddNewUser()(error){

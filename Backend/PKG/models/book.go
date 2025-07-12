@@ -36,11 +36,13 @@ type Book struct{
 func init(){
 	err:=config.DbConnect()
 	if err!=nil{
-		fmt.Println("error occured")
+		fmt.Println("error occured",err)
 		return
 	}
 	db=config.GetDb()
 	db.AutoMigrate(&Book{})
+	db.AutoMigrate(&User{})
+
 	fmt.Println("Initializing database....")
 	go func (){
 		time.Sleep(2 * time.Second)
