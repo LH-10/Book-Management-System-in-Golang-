@@ -18,9 +18,9 @@
     justify-content: center;
     /* align-items: flex-start; */
     flex-wrap:wrap;
-    gap: 30px;
+    gap: 32px;
     column-gap: 70px;
-    padding: 10px;
+    padding: 12px;
     
     overflow-y:visible;
 }
@@ -31,9 +31,9 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 240px;
+    width: 220px;
     margin: 15px 40px;
-    height: 390px;
+    height: 370px;
     
     border-radius: 14px;
     transition: all 0.3s ease-in-out;

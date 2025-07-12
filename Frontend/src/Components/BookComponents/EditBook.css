@@ -1,15 +1,15 @@
 .editbook-form-container {
     width: 90%;
-    height: 780px;
+    height: 760px;
     display: flex;
     flex-direction: column;
     border-radius: 25px;
     /* background-color: aqua; */
     margin: 3px auto;
-    margin-top: 35px;
-    margin-bottom: 10px;
+    margin-top: 40px;
+    margin-bottom: 12px;
     /* min-width: 856px; */
-    max-width: 1280px;
+    max-width: 1200px;
     border-color: #fff3e0;
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     overflow: hidden;
@@ -32,7 +32,7 @@
     border-top-right-radius: inherit;
     border-top-left-radius: inherit;
     min-height: 105px;
-    padding: 2px 35px;
+    padding: 3px 35px;
     background:linear-gradient(to right,#f97316,#f59e0b);
     justify-content: space-between;
     align-items: center;

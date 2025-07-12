@@ -10,8 +10,8 @@
 
 .navcontainer{
     width: inherit;
-    height: 60px;
-    border-radius: 20px;
+    height: 56px;
+    border-radius: 18px;
     display: flex   ;
     justify-content: flex-end;
     align-items: center;
@@ -28,7 +28,7 @@
 {
   cursor: pointer;
     width: 60%;
-    font-size: 1.3rem;
+    font-size: 1.16rem;
     justify-self: flex-start;
     text-align: left;
     color: rgb(255, 255, 255);    
@@ -39,17 +39,17 @@
 
 
 .navcontainer .usernavblock{
-  width: 220px;
+  width: 210px;
   display: flex;
   gap:0 10px;
-  margin: 3px 3px;
-  padding: 4px 4px;
+  margin: 2px 2px;
+  padding: 3px 4px;
   color: #ff6b00;
   background: white;
   border-radius: 10px;
   position: relative;
   justify-content: center;
-  font-size: .98rem; 
+  font-size: .916rem; 
   align-items: center;
   cursor: pointer;
 }
@@ -99,7 +99,7 @@
 .navcontainer  ul li a{
   text-decoration: none;
   color: white;
-  padding: 11px 17px;
+  padding: 9px 19px;
   font-weight: 550;
   transition: all 0.3s ease;
 }
@@ -111,7 +111,7 @@
 .navcontainer  ul li{
   
   list-style: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 
@@ -130,7 +130,7 @@
         gap: 22px;
       }
       .navcontainer .hero-logo{
-        font-size: 1.1rem;
+        font-size: 1.02rem;
         
       }
       .navcontainer  ul{
@@ -138,11 +138,11 @@
       }
       
       .navcontainer  ul li{
-        font-size: .97rem;
+        font-size: .92rem;
       }
       .navcontainer .usernavblock{
         width: 200px;
-        font-size: .9rem;
+        font-size: .88rem;
       }
       .navcontainer .usernavblock svg{
         width: 18px;
@@ -176,13 +176,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 12px;
+    font-size: 10px;
     color: white;
     text-decoration: none;
   }
 
   .mobile-only .nav-item svg {
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 2px;
   }
 
