@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import BooksDisplay from "./BookComponents/BooksDisplay";
-import "./dashboard.css"
+import "./Dashboard.css"
 import { Route, Routes } from "react-router-dom";
 import NewBook from "./BookComponents/NewBook";
 import EditBookPage from "./BookComponents/EditBookPage";

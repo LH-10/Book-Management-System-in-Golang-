@@ -4,7 +4,7 @@ import './LandingPage.css';
 import { FaChartBar, FaClipboardList, FaPlus, FaRegEdit } from 'react-icons/fa';
  import {APP_NAME} from '../configs/Names.js'
  import BookListing from "../assets/booklisting.png"
- import UpdatesImage from "../assets/updates.png"
+ import UpdatesImage from "../assets/Updates.png"
 import StockUpdates from "../assets/AddBook.png"
 const LandingPage = () => {
   return (
