@@ -146,6 +146,9 @@ export default function EditBookPage() {
                 if(updatedObj.price){
                     updatedObj.price=parseInt(updatedObj.price)
                 }
+                if(updatedObj.stock){
+                    updatedObj.stock=parseInt(updatedObj.stock)
+                }
                 formData.append("documentj",JSON.stringify(updatedObj))
 
                 if (isImageSelected()){
@@ -259,6 +262,7 @@ export default function EditBookPage() {
                                     <LabeledInput
                                         labelText="Stock"
                                         name="stock"
+                                        inputType="number"
                                         setBook={setBook}
                                         value={book.stock}
                                         required={true}
