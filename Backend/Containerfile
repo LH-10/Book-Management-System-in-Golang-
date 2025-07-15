@@ -1,4 +1,4 @@
-FROM alpine as build
+FROM alpine as  build
 
 WORKDIR /usr/app/backend
 
@@ -17,11 +17,18 @@ COPY . .
 RUN go build -o ./CMD/main/main ./CMD/main
 
 
+
+
+
+FROM alpine
+
+WORKDIR /usr/backend
+
+COPY --from=build /usr/app/backend/CMD/main/main /usr/backend
+
+COPY --from=build /usr/app/backend/.env /usr/backend 
+
 EXPOSE 8000
 
-CMD ["./CMD/main/main"]
+CMD ["./main"]
 
-
-#FROM alpine
-
-#COPY --from=build 
