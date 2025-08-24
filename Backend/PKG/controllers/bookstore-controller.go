@@ -9,24 +9,29 @@ import(
 	"github.com/LH-10/Book-Management-System-in-Golang-/PKG/models"
 	"encoding/json"
 	"log"
+	"sync"
 	"os"
 	"strings"
 	_"io"
 	_"github.com/joho/godotenv"
 
 )
-	 var data models.Book
-	func CreateBook(w http.ResponseWriter, r *http.Request){
-		Book1 :=&models.Book{}
-		useremail,err:=utils.VerifyUser(r)
-		log.Println(useremail)
-		if err!=nil{
-			log.Println(err,err.Error())
-		
-				http.Error(w,"You are not logged in!",http.StatusBadRequest)
+var data models.Book
+func CreateBook(w http.ResponseWriter, r *http.Request){
+	Book1 :=&models.Book{}
+	
+	var wg sync.WaitGroup
+	errorChannel:=make(chan error,1)
+	var imagefilepath string
+	var res []byte
 
+	useremail,err:=utils.VerifyUser(r)
+	log.Println(useremail)
+	if err!=nil{
+		log.Println(err,err.Error())
+			http.Error(w,"You are not logged in!",http.StatusBadRequest)
 			return
-		}
+	}
 		newUser:=&models.User{}
 		models.GetUserColumns(useremail,[]string{"storename"} ,newUser)
 		err = r.ParseMultipartForm(10 << 20)
@@ -39,25 +44,48 @@ import(
 		Jdata:=r.Form.Get("documentj")
 		s, _ := strconv.Unquote(Jdata)
 
-				fmt.Println(Jdata)
+		fmt.Println(Jdata)
 		fmt.Println(s)
 		if err:=json.Unmarshal([]byte(Jdata),Book1);err!=nil{
 			log.Printf("error occured")
 			fmt.Println(err)
 			return
 		}
+		
 		var imageFolderPath string =os.Getenv("Book_Images_Path")
-		 imagefilepath,err:=utils.FileUpload(r,imageFolderPath)
-		 if err!=nil{
-			log.Println(err)
-			fmt.Fprintf(w,"error")
+		
+		imageUpload:=func(){
+			defer wg.Done()
+			imagefilepath,err=utils.FileUpload(r,imageFolderPath)
+			if err!=nil{
+				log.Println(err)
+				fmt.Fprintf(w,"error")
+				errorChannel<-err
+				return
+			}
+			errorChannel<-nil
+			imagefilepath=strings.Replace(imagefilepath,os.Getenv("Book_Images_Path"),os.Getenv("Book_Image_URL_For_Client"),1)
+		}
+		
+		bookEntry:=func(){
+			defer wg.Done()
+			Book1.ImagePath=imagefilepath
+			Book1.Storename=newUser.Storename
+			res,_=json.Marshal(Book1.CreateBook())
+		}
+		
+		wg.Add(1)
+		go imageUpload()
+		wg.Wait()
+		
+		if err:=<-errorChannel;err!=nil{
 			return
 		}
-
-		imagefilepath=strings.Replace(imagefilepath,os.Getenv("Book_Images_Path"),os.Getenv("Book_Image_URL_For_Client"),1)
-		Book1.ImagePath=imagefilepath
-		Book1.Storename=newUser.Storename
-		res,_:=json.Marshal(Book1.CreateBook())
+		
+		wg.Add(1)
+		go bookEntry()
+		wg.Wait()
+		
 		w.Header().Set("Content-Type","application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write(res)
