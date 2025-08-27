@@ -33,7 +33,13 @@ func CreateBook(w http.ResponseWriter, r *http.Request){
 			return
 	}
 		newUser:=&models.User{}
-		models.GetUserColumns(useremail,[]string{"storename"} ,newUser)
+		wg.Add(1)
+
+		go func(){
+			defer wg.Done()
+			models.GetUserColumns(useremail,[]string{"storename"} ,newUser)
+		}()
+		
 		err = r.ParseMultipartForm(10 << 20)
 		if err != nil {
 			fmt.Println(err)
@@ -68,23 +74,19 @@ func CreateBook(w http.ResponseWriter, r *http.Request){
 		}
 		
 		bookEntry:=func(){
-			defer wg.Done()
 			Book1.ImagePath=imagefilepath
 			Book1.Storename=newUser.Storename
 			res,_=json.Marshal(Book1.CreateBook())
 		}
-		
 		wg.Add(1)
 		go imageUpload()
-		wg.Wait()
 		
+		wg.Wait()
 		if err:=<-errorChannel;err!=nil{
 			return
 		}
 		
-		wg.Add(1)
-		go bookEntry()
-		wg.Wait()
+		bookEntry()
 		
 		w.Header().Set("Content-Type","application/json")
 		w.WriteHeader(http.StatusOK)
