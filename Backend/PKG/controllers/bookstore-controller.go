@@ -85,7 +85,7 @@ func CreateBook(w http.ResponseWriter, r *http.Request){
 		if err:=<-errorChannel;err!=nil{
 			return
 		}
-		
+		close(errorChannel)
 		bookEntry()
 		
 		w.Header().Set("Content-Type","application/json")
@@ -120,8 +120,13 @@ func CreateBook(w http.ResponseWriter, r *http.Request){
 			
 			return
 		}
+		var wg sync.WaitGroup
 		newUser:=&models.User{}
-		models.GetUserColumns(useremail,[]string{"storename"} ,newUser)
+		wg.Add(1)
+		go func(){
+			defer wg.Done()
+			models.GetUserColumns(useremail,[]string{"storename"} ,newUser)
+		}()
 		vars:=mux.Vars(r)
 		bookId:=vars["bookId"]
 		Id,err:=strconv.ParseInt(bookId,0,0)
@@ -132,6 +137,7 @@ func CreateBook(w http.ResponseWriter, r *http.Request){
 			return
 		}
 		thatBook,_:=models.GetBookById(Id)
+		wg.Wait()
 		if thatBook.Storename != newUser.Storename{
 			http.Error(w, "You are not allowed to access this",http.StatusBadRequest)
 
@@ -160,32 +166,45 @@ func CreateBook(w http.ResponseWriter, r *http.Request){
 		if err!=nil{
 			fmt.Println("Error occured while conversion")
 		}
+		var wg sync.WaitGroup
+		wg.Add(1)
 		mybook :=models.Book{}
-		models.GetColumns(Id,[]string{"storename"},&mybook)
-		
+		go func(){
+			defer wg.Done()
+			models.GetColumns(Id,[]string{"storename"},&mybook)
+		}()	
+
 		newUser:=&models.User{}
 		models.GetUserColumns(useremail,[]string{"storename"} ,newUser)
-
+		wg.Wait()
 		if mybook.Storename!=newUser.Storename{
 				http.Error(w,"You are not allowed to delete this !",http.StatusBadRequest)
 
 			
 			return
 		}
+		var res []byte
+		wg.Add(2)
+		go func(){
+			defer wg.Done()
+			thatBook:=models.DeleteBook(Id)
+			res,_=json.Marshal(thatBook)
+		}()
 
-		thatBook:=models.DeleteBook(Id)
-
-		models.GetColumns(Id,[]string{"image_path"},&mybook)
-		fileToDelete:=strings.Replace(mybook.ImagePath,os.Getenv("Book_Image_URL_For_Client"),os.Getenv("Book_Images_Path"),1)
-		fmt.Println(fileToDelete)
-		if err:=os.Remove(fileToDelete);err!=nil{
-			log.Print(err)
-		}else{
-			fmt.Println("Old File Deleted")
-		}
-		res,_:=json.Marshal(thatBook)
+		go func(){
+			defer wg.Done()
+			models.GetColumns(Id,[]string{"image_path"},&mybook)
+			fileToDelete:=strings.Replace(mybook.ImagePath,os.Getenv("Book_Image_URL_For_Client"),os.Getenv("Book_Images_Path"),1)
+			fmt.Println(fileToDelete)
+			if err:=os.Remove(fileToDelete);err!=nil{
+				log.Print(err)
+			}else{
+					fmt.Println("Old File Deleted")
+			}
+		}()
 		w.Header().Set("Content-Type","application/json")
 		w.WriteHeader(http.StatusOK)
+		wg.Wait()
 		w.Write(res)
 		
 	}
