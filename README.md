@@ -68,9 +68,9 @@ JWT_SECRET=your_jwt_secret_key
 DATABASE_NAME=book_management
 SQL_USER=root
 SQL_PASSWORD=your_password
+Host_Name="localhost"
 
-
-
+```
 #### 📦 Install Go dependencies
 
 ```bash
@@ -89,7 +89,7 @@ go run CMD/main/main.go
 * Navigate to the frontend directory:
 
   ```bash
-  cd ../frontend
+  cd ../Frontend
   ```
 
 * Install dependencies:
