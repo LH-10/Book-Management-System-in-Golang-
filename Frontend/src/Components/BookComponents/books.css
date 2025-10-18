@@ -4,41 +4,196 @@
     box-sizing: border-box;
 }
 
-
 .booksContainer {
     /* margin: 35px 12px; */
-    position:relative;
-    display: grid ;
+    position: relative;
+    display: grid;
     grid-template-columns: repeat(3, auto);
     /* background: linear-gradient(135deg, #dfe7f3 0%, #c4d5ef 100%); */
     /* background: linear-gradient(135deg, #f3ebdf 0%, #efe8c4 100%); */
     /* background: #ebedef; */
-    background-color: #E8ECEF;
+    background-color: #eeeeee;
     min-height: 900px;
     justify-content: center;
     /* align-items: flex-start; */
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     gap: 32px;
     column-gap: 70px;
     padding: 12px;
-    
-    overflow-y:visible;
+
+    overflow-y: visible;
 }
 
+.searchContainer {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(
+        to bottom,
+        #eeeeee 0%,
+        #eeeeee 85%,
+        transparent 100%
+    );
+    padding: 20px 12px 14px;
+    margin-bottom: -10px;
+    backdrop-filter: blur(8px);
+}
+
+.searchWrapper {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Used AI for Styling Search Contianer  */
+input[name="searchquery"] {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 16px 56px 16px 48px;
+    display: block;
+    width: 100%;
+    max-width: 700px;
+
+    font-size: 16px;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cpath d='m21 21-4.35-4.35'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 16px center;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input[name="searchquery"]::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+input[name="searchquery"]:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.searchAttribute {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.searchAttribute button {
+    padding: 6px 16px;
+    font-size: 13px;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 500;
+    color: #64748b;
+    background-color: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.searchAttribute button:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+.searchAttribute button.active {
+    background-color: #ffffff;
+    border-color: #3b82f6;
+    color: #3b82f6;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
+}
+
+input[name="searchquery"]:focus {
+    border-color: var(--primary-blue, #0066ff);
+    background-color: #ffffff;
+
+    transform: translateY(-2px);
+}
+
+.filterButton {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.filterButton:hover {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-width: 160px;
+    z-index: 10;
+}
+
+.dropdown button {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1e293b;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown button:hover {
+    background-color: #f8fafc;
+}
+
+.dropdown button:not(:last-child) {
+    border-bottom: 1px solid #f1f5f9;
+}
 .booksContainer .bookcard {
     transition: all 0.3s ease-in-out;
     background: #ffffff;
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 220px;
+    width: 240px;
     margin: 15px 40px;
     height: 370px;
-    
+
     border-radius: 14px;
     transition: all 0.3s ease-in-out;
     padding: 6px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .bookcard .titlesection {
@@ -53,46 +208,43 @@
     flex-wrap: wrap;
     /* flex-direction: column; */
     color: #333333;
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
     background: #f8f9fa;
     border-radius: 12px;
     font-size: 1.1rem;
     font-weight: 500;
-    gap: 2px;    
+    gap: 2px;
 }
-.bookcard .titlesection h3{
+.bookcard .titlesection h3 {
     margin: 2px 4px;
     background: rgb(255, 233, 193);
-    margin-bottom:0 ;
+    margin-bottom: 0;
     text-align: justify;
     text-align: center;
 }
-.bookcard .titlesection img{
+.bookcard .titlesection img {
     height: 160px;
     aspect-ratio: 1 / 6 /1;
-    max-width:100%;
+    max-width: 100%;
 }
 
-
-
-.bookcard .extra-context-for-transparent-card{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.bookcard .extra-context-for-transparent-card {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     visibility: hidden;
     text-align: center;
     font-weight: 900;
     font-size: 1.5rem;
     margin: 2px 30px;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
-.bookcard:hover .extra-context-for-transparent-card{
+.bookcard:hover .extra-context-for-transparent-card {
     color: rgb(5, 5, 46);
     font-weight: 900;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     visibility: visible;
-    text-justify:distribute-all-lines;
-    margin-top: 8px ;
+    text-justify: distribute-all-lines;
+    margin-top: 8px;
 }
-
 
 .bookcard .bookinfo {
     cursor: pointer;
@@ -105,12 +257,12 @@
     height: 25%;
     color: #444444;
     padding: 8px 12px;
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
     font-size: 1rem;
     transition: all 0.3s ease-out;
 }
 
-.bookcard .card-options{
+.bookcard .card-options {
     position: absolute;
     display: flex;
     top: 0;
@@ -120,14 +272,14 @@
     margin: 4px 8px;
     visibility: hidden;
     background: transparent;
-    transition: .3s ease-in-out;
+    transition: 0.3s ease-in-out;
 }
 
-.bookcard:hover .card-options{
+.bookcard:hover .card-options {
     visibility: visible;
 }
 
-.card-options div{
+.card-options div {
     background: rgb(218, 241, 241);
     display: flex;
     height: 38px;
@@ -137,12 +289,14 @@
     padding: 6px;
 }
 
-.card-options div:hover{
+.card-options div:hover {
     transform: scale(1.1);
 }
 .bookcard:hover {
     transform: translateY(-5px);
-    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 7px 14px rgba(0, 0, 0, 0.1),
+        0 3px 6px rgba(0, 0, 0, 0.08);
     /* background: linear-gradient(to bottom, #37ca55, #0d9839); */
     background: linear-gradient(to bottom, #fb9664, #f76806);
     /* background:#123499; */
@@ -152,7 +306,7 @@
     /* background: #0A2472; */
 }
 
-.bookcard:hover .bookinfo{
+.bookcard:hover .bookinfo {
     color: white;
 }
 
@@ -162,49 +316,48 @@
     padding: 0;
 }
 
-@media screen and (max-width:1125px) {
-    .booksContainer{
-        grid-template-columns: repeat(2,auto);
+@media screen and (max-width: 1125px) {
+    .booksContainer {
+        grid-template-columns: repeat(2, auto);
         gap: 10px;
     }
-    .booksContainer .bookcard .extra-context-for-transparent-card{
+    .booksContainer .bookcard .extra-context-for-transparent-card {
         font-size: 1.3rem;
         visibility: visible;
     }
-    .bookcard .card-options{
+    .bookcard .card-options {
         visibility: visible;
         gap: 10px;
     }
-    .card-options div{
+    .card-options div {
         width: 30px;
         height: 30px;
     }
-
 }
-@media screen and (max-width:758px) {
-    .booksContainer{
+@media screen and (max-width: 758px) {
+    .booksContainer {
         padding-bottom: 50px;
     }
 }
-@media screen and (max-width:676px) {
-    .booksContainer{
-        grid-template-columns: repeat(1,auto);
-        font-size:1rem ;
+@media screen and (max-width: 676px) {
+    .booksContainer {
+        grid-template-columns: repeat(1, auto);
+        font-size: 1rem;
     }
-    .booksContainer .bookcard{
+    .booksContainer .bookcard {
         height: 320px;
         width: 200px;
         font-size: large;
     }
-    .bookcard .extra-context-for-transparent-card{
+    .bookcard .extra-context-for-transparent-card {
         font-size: 1.1rem;
     }
 }
-@media (max-width: 680px){
-    .bookcard .titlesection img{
+@media (max-width: 680px) {
+    .bookcard .titlesection img {
         height: 140px;
     }
-    .bookcard .titlesection h3{
-        font-size: .85rem;
+    .bookcard .titlesection h3 {
+        font-size: 0.85rem;
     }
 }
