@@ -1,31 +1,31 @@
 
 
-# 📚 Book Management System – Full Stack (Go + React)
+#  Book Management System – Full Stack (Go + React)
 
 This is a **full-stack Book Management System** built with **Golang** for the backend and **React (Vite)** for the frontend. The application offers a responsive user interface and robust backend functionalities, including secure user authentication, book management, and seamless API integration.
 
 ---
 
-## 🚀 Features
+##  Features
 
-### 🔐 User Authentication
+###  User Authentication
 
 * Secure signup and login using **Argon2id** password hashing and **JWT** for session management.
 * Environment variables managed via `.env` files for enhanced security.
 
-### 📖 Book Management
+###  Book Management
 
 * **CRUD Operations**: Add, view, update, and delete books.
 * Retrieve books by ID or list all available books.
 
-### 🌐 Frontend
+###  Frontend
 
 * Built with **React** and **Vite** for fast performance.
 * Fully **responsive design** compatible with desktops, tablets, and mobile devices.
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 * **Backend**: Golang, GORM (ORM), Gorilla Mux (Router), MySQL
 * **Frontend**: React, Vite, Axios
@@ -34,16 +34,16 @@ This is a **full-stack Book Management System** built with **Golang** for the ba
 
 ---
 
-## 🔧 Setup and Installation
+##  Setup and Installation
 
-### 1️⃣ Clone the Repository
+### 1️ Clone the Repository
 
 ```bash
 git clone https://github.com/yourusername/book-management-system.git
 cd book-management-system
 ```
 
-### 2️⃣ Backend Setup
+### 2️ Backend Setup
 
 * Navigate to the backend directory:
 
@@ -52,7 +52,7 @@ cd book-management-system
 cd backend
 ```
 
-#### 🔑 Create a `.env` file and add your configuration:
+####  Create a `.env` file and add your configuration:
 
 ```env
 # Path where book images are stored on the server
@@ -71,20 +71,20 @@ SQL_PASSWORD=your_password
 Host_Name="localhost"
 
 ```
-#### 📦 Install Go dependencies
+####  Install Go dependencies
 
 ```bash
 go mod tidy
 ```
 
-#### ▶️ Run the backend
+####  Run the backend
 
 ```bash
 go run CMD/main/main.go
 ```
 
 
-### 3️⃣ Frontend Setup
+### 3️ Frontend Setup
 
 * Navigate to the frontend directory:
 
@@ -108,14 +108,14 @@ go run CMD/main/main.go
 
 ---
 
-## 📡 API Endpoints
+##  API Endpoints
 
-### 🔐 Authentication
+###  Authentication
 
 * **Signup**: `POST /signup`
 * **Login**: `POST /login`
 
-### 📖 Book Management
+###  Book Management
 
 * **Create Book**: `POST /book/`
 * **Get All Books**: `GET /book/`
@@ -125,7 +125,7 @@ go run CMD/main/main.go
 
 ---
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 book-management-system/
@@ -152,7 +152,7 @@ book-management-system/
 
 
 
-## 📜 License
+##  License
 
 This project is licensed under the **MIT License**.
 
