@@ -45,19 +45,13 @@ func GetDb() *gorm.DB{
 func userString() string {
 
 	
-	// var username,pass,credString,databaseName string
-	// fmt.Printf("Enter mysql username:")
-	// fmt.Scan(&username)
-	// fmt.Printf("Enter corresponding password:")
-	// fmt.Scan(&pass)
-	// fmt.Printf("Enter database name:")
-	// fmt.Scan(&databaseName)
-	// credString=fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/%s?charset=utf8&parseTime=True&loc=Local",username,pass,databaseName)
 	User,Password:=os.Getenv("SQL_User"),os.Getenv("SQL_Password")
 	Hostname,Databasename:=os.Getenv("Host_Name"),os.Getenv("Database_Name")
-	fmt.Println(User,Password,Databasename)
-	 credString:=fmt.Sprintf("%v:%v@tcp(%v:3306)/%v?charset=utf8&parseTime=True&loc=Local",User,Password,Hostname,Databasename)
-	 fmt.Println(credString)
+
+	//fmt.Println(User,Password,Databasename)
+
+	credString:=fmt.Sprintf("%v:%v@tcp(%v:3306)/%v?charset=utf8&parseTime=True&loc=Local",User,Password,Hostname,Databasename)
+	// fmt.Println(credString)
 	fmt.Println("\n-----------------Done-----------------")
 	return credString
 
